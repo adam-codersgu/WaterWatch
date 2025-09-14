@@ -52,35 +52,49 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String county = 'No country selected';
+  MaterialColor activeColour = Colors.green;
+  Map<String, Color?> colours = {};
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-
-        // TODO
-        //  EXPERIMENT WITH ON HOVER
-        //  EXPERIMENT WITH MARKERS
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: InteractiveViewer(
-              maxScale: 75.0,
-              child: SimpleMap(
-                instructions: SMapUnitedKingdom.instructions,
-                countryBorder: CountryBorder(color: Colors.white),
-                colors: SMapUnitedKingdomColors(
-                  gbUKJ: Colors.green
-                ).toMap(),
-                callback: (id, name, tapDetails) {
-                  setState(() {
-                    county = "$name $id";
-                  });
-                },
-              )),
+    return Scaffold(
+      appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            // TODO
+            //  EXPERIMENT WITH MARKERS
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              // height: MediaQuery.of(context).size.height,
+              child: InteractiveViewer(
+                maxScale: 75.0,
+                child: SimpleMap(
+                  instructions: SMapUnitedKingdom.instructions,
+                  countryBorder: CountryBorder(color: Colors.white),
+                  colors: colours,
+                  callback: (id, name, tapDetails) {
+                    setState(() {
+                      colours = {id: Colors.blue};
+                      // activeColour = Colors.blue;
+                      county = "$name $id";
+                    });
+                  },
+                ),
+              ),
+            ),
+            // Text(county /*, style: Theme.of(context).textTheme.headline1*/),
+          ],
         ),
-        Text(county/*, style: Theme.of(context).textTheme.headline1*/)
-      ],
-     );
+      ),
+    );
   }
 }
