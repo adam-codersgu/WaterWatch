@@ -1,12 +1,13 @@
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
 
+import 'england.dart';
+
 /*
 DOCUMENTATION
  - https://pub.dev/packages/countries_world_map
  - https://github.com/simplewidgets/countries_world_map/blob/feature-ripple-effect/example/lib/pages/supported_countries_map.dart
  */
-
 void main() {
   runApp(const MyApp());
 }
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'WaterWatch',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'WaterWatch'),
     );
   }
 }
@@ -52,7 +53,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String county = 'No country selected';
+  String county = 'No county selected';
   MaterialColor activeColour = Colors.green;
   Map<String, Color?> colours = {};
 
@@ -68,8 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      // TODO RESUME
-      // FIND A WAY OF COORDINATING THE ELEMENTS OF THE WEBPAGE
       body: Stack(
         children: <Widget>[
           SizedBox(
@@ -108,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                  *
                  */
                     child: SimpleMap(
-                      instructions: SMapUnitedKingdom.instructions,
+                      instructions: SMapEngland.instructions,
                       countryBorder: CountryBorder(color: Colors.white),
                       colors: colours,
                       callback: (id, name, tapDetails) {
@@ -119,9 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
+                  // Text(county /*, style: Theme.of(context).textTheme.headline1*/),
                 ],
               ),
-              // Text(county /*, style: Theme.of(context).textTheme.headline1*/),
             ),
           ),
         ],
