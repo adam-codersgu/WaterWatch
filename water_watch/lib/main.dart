@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 /*
 DOCUMENTATION
  - https://pub.dev/packages/countries_world_map
+ - https://github.com/simplewidgets/countries_world_map/blob/feature-ripple-effect/example/lib/pages/supported_countries_map.dart
  */
 
 void main() {
@@ -69,16 +70,20 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // TODO RESUME
       // FIND A WAY OF COORDINATING THE ELEMENTS OF THE WEBPAGE
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.85,
-              child: InteractiveViewer(
-                maxScale: 75.0,
-                // TODO - ON HOVER CHANGE CURSOR TO POINTER?
-                /* https://api.flutter.dev/flutter/services/MouseCursor-class.html
+      body: Stack(
+        children: <Widget>[
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: InteractiveViewer(
+              maxScale: 75,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.92,
+                    // alignment: Alignment.center,
+                    // TODO - ON HOVER CHANGE CURSOR TO POINTER?
+                    /* https://api.flutter.dev/flutter/services/MouseCursor-class.html
                  * DO SOMETHING LIKE THIS
                  * WRAP THE ENTIRE LAYOUT IN A MOUSEREGION
                  * SET THE CURSOR PROPERTY TO A VARIABLE
@@ -102,23 +107,24 @@ class _MyHomePageState extends State<MyHomePage> {
   }
                  *
                  */
-                child: SimpleMap(
-                  instructions: SMapUnitedKingdom.instructions,
-                  countryBorder: CountryBorder(color: Colors.white),
-                  colors: colours,
-                  callback: (id, name, tapDetails) {
-                    setState(() {
-                      colours = {id: Colors.blue};
-                      // activeColour = Colors.blue;
-                      county = "$name $id";
-                    });
-                  },
-                ),
+                    child: SimpleMap(
+                      instructions: SMapUnitedKingdom.instructions,
+                      countryBorder: CountryBorder(color: Colors.white),
+                      colors: colours,
+                      callback: (id, name, tapDetails) {
+                        setState(() {
+                          colours = {id: Colors.blue};
+                          county = "$name $id";
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
+              // Text(county /*, style: Theme.of(context).textTheme.headline1*/),
             ),
-            // Text(county /*, style: Theme.of(context).textTheme.headline1*/),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
