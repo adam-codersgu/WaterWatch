@@ -2,9 +2,9 @@ import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought.dart';
 
-import 'constants/constants.dart' as Constants;
 import 'database/drought_statuses.dart' show DroughtStatuses;
-import 'dialog/drough_status_dialog.dart';
+import 'dialog/drought_status_dialog.dart';
+import 'experimental/my_painter.dart';
 
 /*
 DOCUMENTATION
@@ -57,19 +57,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static final Map<String, Drought> droughtStatuses =
-      DroughtStatuses.getDroughtStatuses();
-
-  // TODO - COLOUR MAPPING SHOULD MATCH DROUGHT STATUS
-  Map<String, Color?> colours = {
-    Constants.northEastCountyId: droughtStatuses[Constants.northEastCountyId]
-        ?.getColour(),
-    Constants.southEastCountyId: droughtStatuses[Constants.southEastCountyId]
-        ?.getColour(),
-  };
+  static final Map<String, Drought> droughtStatuses = DroughtStatuses.getDroughtStatuses();
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, Color?> colours = {};
+    droughtStatuses.forEach((countyId, droughtStatus) => colours[countyId] = droughtStatus.getColour());
+
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -80,9 +74,15 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      // TODO - ADD A POPUP THAT SHOWS THE DROUGHT STATUS OF AN AREA WHEN CLICKED
       body: Stack(
         children: <Widget>[
+          /*CustomPaint(
+              painter: MyPainter(),
+              child: SizedBox(
+                  width: 150,
+                  height: 150
+              )
+          ),*/
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -123,11 +123,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       countryBorder: CountryBorder(color: Colors.white),
                       colors: colours,
                       callback: (id, name, tapDetails) {
-                        if (id != "") {
+                        final droughtStatus = droughtStatuses[id];
+                        if (id != "" && droughtStatus != null) {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return DroughtStatusWidget(countyId: id);
+                              return DroughtStatusWidget(droughtStatus: droughtStatus);
                             },
                           );
                         }

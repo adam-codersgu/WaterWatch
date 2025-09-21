@@ -11,13 +11,16 @@ class DroughtStatuses {
 
     /// North East
     var neaStatus = DroughtStatus(name: Constants.nea, status: Status.prolongedDryWeather);
-    var gbUKCDrought = Drought(countyId: Constants.northEastCountyId, statuses: [neaStatus]);
-    droughtStatuses[Constants.northEastCountyId] = gbUKCDrought;
+    var gbUKCDrought = Drought(areaId: Constants.northEastAreaId, statuses: [neaStatus]);
+    droughtStatuses[Constants.northEastAreaId] = gbUKCDrought;
 
-    /* /// North West
-    Color? gbUKD;
+    /// North West
+    var claStatus = DroughtStatus(name: Constants.cla, status: Status.drought);
+    var gmmcStatus = DroughtStatus(name: Constants.gmmc, status: Status.drought);
+    var gbUKDDrought = Drought(areaId: Constants.northWestAreaId, statuses: [claStatus, gmmcStatus]);
+    droughtStatuses[Constants.northWestAreaId] = gbUKDDrought;
 
-    /// Yorkshire and the Humber
+    /* /// Yorkshire and the Humber
     Color? gbUKE;
 
     /// East Midlands
@@ -37,25 +40,39 @@ class DroughtStatuses {
     var kslStatus = DroughtStatus(name: Constants.ksl, status: Status.normal);
     var ssdStatus = DroughtStatus(name: Constants.ssd, status: Status.prolongedDryWeather);
     var thmStatus = DroughtStatus(name: Constants.thm, status: Status.prolongedDryWeather);
-    var gbUKJDrought = Drought(countyId: Constants.southEastCountyId, statuses: [kslStatus, ssdStatus, thmStatus]);
-    droughtStatuses[Constants.southEastCountyId] = gbUKJDrought;
+    var gbUKJDrought = Drought(areaId: Constants.southEastAreaId, statuses: [kslStatus, ssdStatus, thmStatus]);
+    droughtStatuses[Constants.southEastAreaId] = gbUKJDrought;
 
     /* /// South West
-    Color? gbUKK;
+    Color? gbUKK;*/
 
     /// Wales
-    Color? gbUKL;
+    // https://api-portal.naturalresources.wales/apis
+    // https://naturalresources.wales/about-us/news-and-blogs/blogs/dry-weather-updates-2025/?lang=en
+    var walesDroughtStatus = DroughtStatus(name: Constants.walesDrought, status: Status.drought);
+    var walesProlongedDryWeatherStatus = DroughtStatus(name: Constants.walesProlongedDryWeather, status: Status.prolongedDryWeather);
+    var gbUKLDrought = Drought(areaId: Constants.walesAreaId, statuses: [walesDroughtStatus, walesProlongedDryWeatherStatus]);
+    droughtStatuses[Constants.walesAreaId] = gbUKLDrought;
 
     /// Scotland
-    Color? gbUKM;
+    // https://beta.sepa.scot/water-scarcity/previous-reports/18-september-2025/
+    var scotlandStatus = DroughtStatus(name: Constants.scotland, status: Status.prolongedDryWeather);
+    var gbUKMDrought = Drought(areaId: Constants.scotlandAreaId, statuses: [scotlandStatus]);
+    droughtStatuses[Constants.scotlandAreaId] = gbUKMDrought;
 
     /// Northern Ireland
-    Color? gbUKN;
+    // https://www.infrastructure-ni.gov.uk/articles/dfi-rivers-water-level-network
+    var northernIrelandStatus = DroughtStatus(name: Constants.northernIreland, status: Status.normal);
+    var gbUKNDrought = Drought(areaId: Constants.northernIrelandAreaId, statuses: [northernIrelandStatus]);
+    droughtStatuses[Constants.northernIrelandAreaId] = gbUKNDrought;
 
     /// Guernsey
-    Color? ggGG;
+    // https://water.gg/extra-pages/water-storage/
+    var guernseyStatus = DroughtStatus(name: Constants.walesDrought, status: Status.normal);
+    var ggGGDrought = Drought(areaId: Constants.guernseyAreaId, statuses: [guernseyStatus]);
+    droughtStatuses[Constants.guernseyAreaId] = ggGGDrought;
 
-    /// Jersey
+    /*/// Jersey
     Color? jeJE;
 
     /// Isle of Man
@@ -67,18 +84,12 @@ class DroughtStatuses {
     return droughtStatuses;
   }
   /*
-  gbUKD: map["GB-UKD"],
   gbUKE: map["GB-UKE"],
   gbUKF: map["GB-UKF"],
   gbUKG: map["GB-UKG"],
   gbUKH: map["GB-UKH"],
   gbUKI: map["GB-UKI"],
-  gbUKJ: map["GB-UKJ"],
   gbUKK: map["GB-UKK"],
-  gbUKL: map["GB-UKL"],
-  gbUKM: map["GB-UKM"],
-  gbUKN: map["GB-UKN"],
-  ggGG: map["GG-GG"],
   jeJE: map["JE-JE"],
   imIM: map["IM-IM"],
   ieIE: map["IE-IE"], */
