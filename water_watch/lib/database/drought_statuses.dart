@@ -6,7 +6,7 @@ import '../constants/constants.dart' as Constants;
 import '../model/drought.dart';
 
 class DroughtStatuses {
-  Map<String, Drought> getDroughtStatuses() {
+  static Map<String, Drought> getDroughtStatuses() {
     Map<String, Drought> droughtStatuses = {};
 
     /// North East

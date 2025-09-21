@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought_status.dart';
 
 /// DOCUMENTATION
@@ -18,4 +19,16 @@ class Drought {
     "countyId": countyId,
     "status": statuses,
   };
+
+  Color getColour() {
+    if (statuses.any((item) => item.status == Status.drought)) {
+      return Colors.red;
+    } else if (statuses.any((item) => item.status == Status.prolongedDryWeather)) {
+      return Colors.orange;
+    } else if (statuses.any((item) => item.status == Status.recovery)) {
+      return Colors.lightGreen;
+    } else {
+      return Colors.green;
+    }
+  }
 }

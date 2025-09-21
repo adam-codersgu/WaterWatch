@@ -1,6 +1,9 @@
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
+import 'package:water_watch/model/drought.dart';
 
+import 'constants/constants.dart' as Constants;
+import 'database/drought_statuses.dart' show DroughtStatuses;
 import 'dialog/drough_status_dialog.dart';
 
 /*
@@ -54,8 +57,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  MaterialColor activeColour = Colors.green;
-  Map<String, Color?> colours = {};
+  static final Map<String, Drought> droughtStatuses =
+      DroughtStatuses.getDroughtStatuses();
+
+  // TODO - COLOUR MAPPING SHOULD MATCH DROUGHT STATUS
+  Map<String, Color?> colours = {
+    Constants.northEastCountyId: droughtStatuses[Constants.northEastCountyId]
+        ?.getColour(),
+    Constants.southEastCountyId: droughtStatuses[Constants.southEastCountyId]
+        ?.getColour(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -112,17 +123,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       countryBorder: CountryBorder(color: Colors.white),
                       colors: colours,
                       callback: (id, name, tapDetails) {
-                        setState(() {
-                          colours = {id: Colors.blue};
-                          if (id != "") {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return DroughtStatusWidget(countyId: id);
-                              },
-                            );
-                          }
-                        });
+                        if (id != "") {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return DroughtStatusWidget(countyId: id);
+                            },
+                          );
+                        }
                       },
                     ),
                   ),
