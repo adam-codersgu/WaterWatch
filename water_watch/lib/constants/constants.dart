@@ -27,6 +27,9 @@ deteriorates as you head east.\n
 In particular, Findhorn (East), River Avon, Lower Spey, Deveron, Ythan, South Ugie Water, Upper and 
 Lower Don (Aberdeenshire) catchments remain at Significant Scarcity.""";
 
+/// Guernsey
+const String guernsey = "Guernsey";
+
 /// Wales boundaries
 const String walesDrought = """The North, East and South (Dee, Clwyd, 
 Ynys Mon, North Gwynedd, South Gwynedd, Upper Severn 

@@ -72,7 +72,7 @@ class DroughtStatuses {
 
     /// Guernsey
     // https://water.gg/extra-pages/water-storage/
-    var guernseyStatus = DroughtStatus(name: Constants.walesDrought, status: Status.normal);
+    var guernseyStatus = DroughtStatus(name: Constants.guernsey, status: Status.normal);
     var ggGGDrought = Drought(areaId: Constants.guernseyAreaId, statuses: [guernseyStatus]);
     droughtStatuses[Constants.guernseyAreaId] = ggGGDrought;
 
