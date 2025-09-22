@@ -43,8 +43,12 @@ class DroughtStatuses {
     var gbUKJDrought = Drought(areaId: Constants.southEastAreaId, statuses: [kslStatus, ssdStatus, thmStatus]);
     droughtStatuses[Constants.southEastAreaId] = gbUKJDrought;
 
-    /* /// South West
-    Color? gbUKK;*/
+    /// South West
+    // https://naturalengland-defra.opendata.arcgis.com/datasets/Defra::administrative-boundaries-environment-agency-and-natural-england-public-face-areas/explore?location=51.889776%2C-3.165840%2C6.57
+    var dcsStatus = DroughtStatus(name: Constants.dcs, status: Status.normal);
+    var wsxStatus = DroughtStatus(name: Constants.wsx, status: Status.prolongedDryWeather);
+    var gbUKKDrought = Drought(areaId: Constants.southWestAreaId, statuses: [dcsStatus, wsxStatus]);
+    droughtStatuses[Constants.southWestAreaId] = gbUKKDrought;
 
     /// Wales
     // https://api-portal.naturalresources.wales/apis
@@ -89,7 +93,6 @@ class DroughtStatuses {
   gbUKG: map["GB-UKG"],
   gbUKH: map["GB-UKH"],
   gbUKI: map["GB-UKI"],
-  gbUKK: map["GB-UKK"],
   jeJE: map["JE-JE"],
   imIM: map["IM-IM"],
   ieIE: map["IE-IE"], */

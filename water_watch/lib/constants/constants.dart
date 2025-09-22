@@ -5,15 +5,18 @@ const String northWestAreaId = "GB-UKD";
 const String northernIrelandAreaId = "GB-UKN";
 const String scotlandAreaId = "GB-UKM";
 const String southEastAreaId = "GB-UKJ";
+const String southWestAreaId = "GB-UKK";
 const String walesAreaId = "GB-UKL";
 
 /// Environment agency border boundaries
 const String cla = "Cumbria & Lancashire";
+const String dcs = "Devon Cornwall and the Isles of Scilly";
 const String gmmc = "Greater Manchester, Merseyside & Cheshire";
 const String ksl = "Kent and South London";
 const String nea = "North East";
 const String ssd = "Solent and South Downs";
 const String thm = "Thames";
+const String wsx = "Wessex";
 
 /// Northern Ireland boundaries
 const String northernIreland = "Northern Ireland";
