@@ -20,11 +20,13 @@ class DroughtStatuses {
     var gbUKDDrought = Drought(areaId: Constants.northWestAreaId, statuses: [claStatus, gmmcStatus]);
     droughtStatuses[Constants.northWestAreaId] = gbUKDDrought;
 
-    /* /// Yorkshire and the Humber
-    Color? gbUKE;
+    /// Yorkshire and the Humber
+    var yorStatus = DroughtStatus(name: Constants.yor, status: Status.drought);
+    var gbUKEDrought = Drought(areaId: Constants.southEastAreaId, statuses: [yorStatus]);
+    droughtStatuses[Constants.yorkshireAreaId] = gbUKEDrought;
 
     /// East Midlands
-    Color? gbUKF;
+    /* Color? gbUKF;
 
     /// West Midlands
     Color? gbUKG;

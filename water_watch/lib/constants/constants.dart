@@ -7,6 +7,7 @@ const String scotlandAreaId = "GB-UKM";
 const String southEastAreaId = "GB-UKJ";
 const String southWestAreaId = "GB-UKK";
 const String walesAreaId = "GB-UKL";
+const String yorkshireAreaId = "GB-UKE";
 
 /// Environment agency border boundaries
 const String cla = "Cumbria & Lancashire";
@@ -17,6 +18,7 @@ const String nea = "North East";
 const String ssd = "Solent and South Downs";
 const String thm = "Thames";
 const String wsx = "Wessex";
+const String yor = "Yorkshire";
 
 /// Northern Ireland boundaries
 const String northernIreland = "Northern Ireland";
