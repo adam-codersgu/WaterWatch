@@ -24,9 +24,9 @@ const String wsx = "Wessex";
 const String yor = "Yorkshire";
 
 /// Republic of Ireland
-const String roIreland = """Nearly a third of counties are in drought status, including Donegal, Dublin, Cork, Limerick, Galway, Meath, 
-Tipperary, Waterford, Clare, Wexford, and 
-Westmeath.""";
+const String roIreland = """In the Republic of Ireland, nearly a third of 
+counties are in drought status, including Donegal, Dublin, Cork, Limerick, 
+Galway, Meath, Tipperary, Waterford, Clare, Wexford, and Westmeath.""";
 
 /// Northern Ireland boundaries
 const String northernIreland = "Northern Ireland";
