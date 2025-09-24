@@ -78,24 +78,23 @@ class DroughtStatuses {
     var ggGGDrought = Drought(areaId: Constants.guernseyAreaId, statuses: [guernseyStatus]);
     droughtStatuses[Constants.guernseyAreaId] = ggGGDrought;
 
-    /*/// Jersey
-    Color? jeJE;
+    /// Jersey
+    var jerseyStatus = DroughtStatus(name: Constants.jersey, status: Status.normal);
+    var jeJEDrought = Drought(areaId: Constants.jerseyAreaId, statuses: [jerseyStatus]);
+    droughtStatuses[Constants.jerseyAreaId] = jeJEDrought;
 
     /// Isle of Man
-    Color? imIM;
+    // https://www.manxutilities.im/sustainability/latest-reservoir-levels/
+    var isleOfManStatus = DroughtStatus(name: Constants.isleOfMan, status: Status.normal);
+    var imIMDrought = Drought(areaId: Constants.isleOfManAreaId, statuses: [isleOfManStatus]);
+    droughtStatuses[Constants.isleOfManAreaId] = imIMDrought;
 
     /// Ireland
-    Color? ieIE; */
+    // https://www.irishpost.com/news/drought-status-declared-in-nearly-a-third-of-all-irish-counties-293954
+    var roIrelandStatus = DroughtStatus(name: Constants.roIreland, status: Status.drought);
+    var ieIEDrought = Drought(areaId: Constants.roIrelandAreaId, statuses: [roIrelandStatus]);
+    droughtStatuses[Constants.roIrelandAreaId] = ieIEDrought;
 
     return droughtStatuses;
   }
-  /*
-  gbUKE: map["GB-UKE"],
-  gbUKF: map["GB-UKF"],
-  gbUKG: map["GB-UKG"],
-  gbUKH: map["GB-UKH"],
-  gbUKI: map["GB-UKI"],
-  jeJE: map["JE-JE"],
-  imIM: map["IM-IM"],
-  ieIE: map["IE-IE"], */
 }

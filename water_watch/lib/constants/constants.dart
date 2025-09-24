@@ -1,8 +1,11 @@
-/// United Kingdom and Republic of Ireland map area keys
+/// United Kingdom, Republic of Ireland and channel islands map area keys
 const String guernseyAreaId = "GG-GG";
+const String isleOfManAreaId = "IM-IM";
+const String jerseyAreaId = "JE-JE";
 const String northEastAreaId = "GB-UKC";
 const String northWestAreaId = "GB-UKD";
 const String northernIrelandAreaId = "GB-UKN";
+const String roIrelandAreaId = "IE-IE";
 const String scotlandAreaId = "GB-UKM";
 const String southEastAreaId = "GB-UKJ";
 const String southWestAreaId = "GB-UKK";
@@ -20,6 +23,11 @@ const String thm = "Thames";
 const String wsx = "Wessex";
 const String yor = "Yorkshire";
 
+/// Republic of Ireland
+const String roIreland = """Nearly a third of counties are in drought status, including Donegal, Dublin, Cork, Limerick, Galway, Meath, 
+Tipperary, Waterford, Clare, Wexford, and 
+Westmeath.""";
+
 /// Northern Ireland boundaries
 const String northernIreland = "Northern Ireland";
 
@@ -31,6 +39,12 @@ Lower Don (Aberdeenshire) catchments remain at Significant Scarcity.""";
 
 /// Guernsey
 const String guernsey = "Guernsey";
+
+/// Isle of Man
+const String isleOfMan = "Isle of Man";
+
+/// Jersey
+const String jersey = "Jersey";
 
 /// Wales boundaries
 const String walesDrought = """The North, East and South (Dee, Clwyd, 
