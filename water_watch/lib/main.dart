@@ -1,5 +1,10 @@
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
+import 'package:water_watch/model/drought.dart';
+
+import 'database/drought_statuses.dart' show DroughtStatuses;
+import 'dialog/drought_status_dialog.dart';
+import 'experimental/my_painter.dart';
 
 /*
 DOCUMENTATION
@@ -18,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'WaterWatch',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'WaterWatch'),
     );
   }
 }
@@ -52,12 +57,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String county = 'No country selected';
-  MaterialColor activeColour = Colors.green;
-  Map<String, Color?> colours = {};
+  static final Map<String, Drought> droughtStatuses = DroughtStatuses.getDroughtStatuses();
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, Color?> colours = {};
+    droughtStatuses.forEach((countyId, droughtStatus) => colours[countyId] = droughtStatus.getColour());
+
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -68,8 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      // TODO RESUME
-      // FIND A WAY OF COORDINATING THE ELEMENTS OF THE WEBPAGE
       body: Stack(
         children: <Widget>[
           SizedBox(
@@ -112,16 +116,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       countryBorder: CountryBorder(color: Colors.white),
                       colors: colours,
                       callback: (id, name, tapDetails) {
-                        setState(() {
-                          colours = {id: Colors.blue};
-                          county = "$name $id";
-                        });
+                        final droughtStatus = droughtStatuses[id];
+                        if (id != "" && droughtStatus != null) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return DroughtStatusWidget(droughtStatus: droughtStatus);
+                            },
+                          );
+                        }
                       },
                     ),
                   ),
                 ],
               ),
-              // Text(county /*, style: Theme.of(context).textTheme.headline1*/),
             ),
           ),
         ],
