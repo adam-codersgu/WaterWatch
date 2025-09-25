@@ -4,14 +4,12 @@ import 'package:water_watch/model/drought.dart';
 
 import 'database/drought_statuses.dart' show DroughtStatuses;
 import 'dialog/drought_status_dialog.dart';
-import 'experimental/my_painter.dart';
 
 /*
 DOCUMENTATION
  - https://pub.dev/packages/countries_world_map
  - https://github.com/simplewidgets/countries_world_map/blob/feature-ripple-effect/example/lib/pages/supported_countries_map.dart
  */
-
 void main() {
   runApp(const MyApp());
 }
