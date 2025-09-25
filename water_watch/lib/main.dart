@@ -76,6 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Stack(
         children: <Widget>[
+          CustomPaint(
+              painter: MyPainter(),
+              child: SizedBox(
+                  width: 150,
+                  height: 150
+              )
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
