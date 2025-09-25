@@ -26,17 +26,25 @@ class DroughtStatuses {
     droughtStatuses[Constants.yorkshireAreaId] = gbUKEDrought;
 
     /// East Midlands
-    /* Color? gbUKF;
+    var emdStatus = DroughtStatus(name: Constants.emd, status: Status.drought);
+    var lnaStatus = DroughtStatus(name: Constants.lna, status: Status.prolongedDryWeather);
+    var gbUKFDrought = Drought(areaId: Constants.eastMidlandsAreaId, statuses: [emdStatus, lnaStatus]);
+    droughtStatuses[Constants.eastMidlandsAreaId] = gbUKFDrought;
 
     /// West Midlands
-    Color? gbUKG;
+    var wmdStatus = DroughtStatus(name: Constants.wmd, status: Status.drought);
+    var gbUKGDrought = Drought(areaId: Constants.westMidlandsAreaId, statuses: [wmdStatus]);
+    droughtStatuses[Constants.westMidlandsAreaId] = gbUKGDrought;
 
     /// East of England
-    Color? gbUKH;
+    var eanStatus = DroughtStatus(name: Constants.yor, status: Status.prolongedDryWeather);
+    var gbUKHDrought = Drought(areaId: Constants.eastAreaId, statuses: [eanStatus]);
+    droughtStatuses[Constants.eastAreaId] = gbUKHDrought;
 
     /// Greater London
-    /// The "HNL" in "HNL environment agency boundary" refers to Hertfordshire and North London
-    Color? gbUKI; */
+    var hnlStatus = DroughtStatus(name: Constants.yor, status: Status.normal);
+    var gbUKIDrought = Drought(areaId: Constants.londonAreaId, statuses: [hnlStatus]);
+    droughtStatuses[Constants.londonAreaId] = gbUKIDrought;
 
     /// South East
     var kslStatus = DroughtStatus(name: Constants.ksl, status: Status.normal);
