@@ -42,7 +42,7 @@ class DroughtStatuses {
     droughtStatuses[Constants.eastAreaId] = gbUKHDrought;
 
     /// Greater London
-    var hnlStatus = DroughtStatus(name: Constants.yor, status: Status.normal);
+    var hnlStatus = DroughtStatus(name: Constants.hnl, status: Status.normal);
     var gbUKIDrought = Drought(areaId: Constants.londonAreaId, statuses: [hnlStatus]);
     droughtStatuses[Constants.londonAreaId] = gbUKIDrought;
 

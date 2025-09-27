@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought.dart';
 
 import 'database/drought_statuses.dart' show DroughtStatuses;
+import 'database/mongodb_datasource.dart';
 import 'dialog/drought_status_dialog.dart';
 
 /*
@@ -55,7 +58,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<List<Map<String, dynamic>>>? futureData;
+
   static final Map<String, Drought> droughtStatuses = DroughtStatuses.getDroughtStatuses();
+
+  @override
+  void initState() {
+    super.initState();
+
+    MongoDB.connect().then((_) {
+      setState(() {
+        futureData = MongoDB.getData();
+      });
+    }).catchError((e) {
+      log('Error connecting to MongoDB: $e');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
