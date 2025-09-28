@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought.dart';
@@ -68,10 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     MongoDB.connect().then((_) {
       setState(() {
-        futureData = MongoDB.getData();
+        futureData = MongoDB.getDroughtData();
       });
-    }).catchError((e) {
-      log('Error connecting to MongoDB: $e');
     });
   }
 

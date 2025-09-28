@@ -6,26 +6,36 @@ import 'package:mongo_dart/mongo_dart.dart';
 /*
  * DOCUMENTATION
  *
- * - https://medium.com/@umkithya/storing-credentials-securely-in-a-flutter-project-c9d22dcf7584
+ * - https://pub.dev/packages/flutter_dotenv
+ * - https://pub.dev/packages/mongo_dart
  */
 class MongoDB {
   static Db? db;
-  static DbCollection? userCollection;
+  static DbCollection? droughtCollection;
+  static DbCollection? droughtStatusCollection;
+  static DbCollection? droughtStatusDescriptionCollection;
 
   static Future<void> connect() async {
     try {
       final String connectionString = await getConnectionString();
       db = await Db.create(connectionString);
       await db!.open();
-      userCollection = db!.collection("water_watch.drought_status");
+      // TODO - CONSTANT THESE FIELD NAMES AND PUT THEM IN ENV FILE
+      droughtCollection = db!.collection("drought");
+      droughtStatusCollection = db!.collection("drought_status");
+      droughtStatusDescriptionCollection = db!.collection("drought_status_description");
       log('Connected to MongoDB');
     } catch (e) {
       log('Error connecting to MongoDB: $e');
     }
   }
 
-  static Future<List<Map<String, dynamic>>> getData() async {
-    final arrData = await userCollection!.find().toList();
+  static Future<List<Map<String, dynamic>>> getDroughtData() async {
+    return await getData(droughtCollection);
+  }
+
+  static Future<List<Map<String, dynamic>>> getData(DbCollection? dbCollection) async {
+    final arrData = await dbCollection!.find().toList();
     log('Data in collection: ${arrData.toString()}');
     return arrData;
   }
@@ -34,8 +44,9 @@ class MongoDB {
     await dotenv.load(fileName: ".env");
     final username = dotenv.env['DB_USERNAME'];
     final password = dotenv.env['DB_PASSWORD'];
+    // TODO - DEFER CLUSTER NAME TO ENV FILE?
     return """mongodb+srv://${username!}:${password!}@maincluster
-    .smtynbd.mongodb.net/?retryWrites=true
+    .smtynbd.mongodb.net/water_watch?retryWrites=true
     &w=majority&appName=MainCluster""";
   }
 }
