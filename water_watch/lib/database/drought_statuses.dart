@@ -1,16 +1,39 @@
-// FIXME - TEMP DATA CLASS TO BE MIGRATED TO MONGODB
-
 import 'package:water_watch/model/drought_status.dart';
 
 import '../constants/constants.dart' as Constants;
 import '../model/drought.dart';
+import 'mongodb_datasource.dart';
 
 class DroughtStatuses {
-  static Map<String, Drought> getDroughtStatuses() {
+
+  static Future<Map<String, Drought>> getDroughtStatuses() async {
+    Map<String, Drought> droughtStatuses = {};
+
+    List<Map<String, dynamic>>? droughtData;
+    List<Map<String, dynamic>>? droughtStatusData;
+    List<Map<String, dynamic>>? droughtStatusDescriptionData;
+
+    await MongoDB.connect().then((_) async {
+      droughtData = await MongoDB.getDroughtData();
+      droughtStatusData = await MongoDB.getDroughtStatusData();
+      droughtStatusDescriptionData = await MongoDB.getDroughtStatusDescriptionData();
+    });
+
+    for (var dd in droughtData!) {
+      // TODO - RESUME ASSEMBLING DROUGHT OBJECTS
+      Drought ds = Drought.fromJson(dd);
+      String name = ds.name;
+    }
+
+    return droughtStatuses;
+  }
+  
+  @Deprecated("Use getDroughtStatuses()")
+  static Map<String, Drought> getDroughtStatusesOld() {
     Map<String, Drought> droughtStatuses = {};
 
     /// North East
-    var neaStatus = DroughtStatus(name: Constants.nea, status: Status.prolongedDryWeather);
+    /*var neaStatus = DroughtStatus(name: Constants.nea, status: Status.prolongedDryWeather);
     var gbUKCDrought = Drought(areaId: Constants.northEastAreaId, statuses: [neaStatus]);
     droughtStatuses[Constants.northEastAreaId] = gbUKCDrought;
 
@@ -37,7 +60,7 @@ class DroughtStatuses {
     droughtStatuses[Constants.westMidlandsAreaId] = gbUKGDrought;
 
     /// East of England
-    var eanStatus = DroughtStatus(name: Constants.yor, status: Status.prolongedDryWeather);
+    var eanStatus = DroughtStatus(name: Constants.ean, status: Status.prolongedDryWeather);
     var gbUKHDrought = Drought(areaId: Constants.eastAreaId, statuses: [eanStatus]);
     droughtStatuses[Constants.eastAreaId] = gbUKHDrought;
 
@@ -101,7 +124,7 @@ class DroughtStatuses {
     // https://www.irishpost.com/news/drought-status-declared-in-nearly-a-third-of-all-irish-counties-293954
     var roIrelandStatus = DroughtStatus(name: Constants.roIreland, status: Status.drought);
     var ieIEDrought = Drought(areaId: Constants.roIrelandAreaId, statuses: [roIrelandStatus]);
-    droughtStatuses[Constants.roIrelandAreaId] = ieIEDrought;
+    droughtStatuses[Constants.roIrelandAreaId] = ieIEDrought;*/
 
     return droughtStatuses;
   }

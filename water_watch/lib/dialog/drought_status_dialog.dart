@@ -21,11 +21,11 @@ class DroughtStatusWidget extends StatelessWidget {
       if (droughtStatus.areaId == scotlandAreaId) {
         summary = "Conditions range from normal water availability in the west, to water scarcity in the east.";
       } else {
-        summary = getDroughtStatusSummary(status.status);
+        summary = "Temp"; //fixme getDroughtStatusSummary(status.status);
       }
       statusWidgets.addAll([
         Text(
-          status.name,
+          "Temp",// fixme status.name,
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
         ),
         Text(

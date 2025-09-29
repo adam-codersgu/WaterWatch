@@ -20,10 +20,10 @@ class MongoDB {
       final String connectionString = await getConnectionString();
       db = await Db.create(connectionString);
       await db!.open();
-      // TODO - CONSTANT THESE FIELD NAMES AND PUT THEM IN ENV FILE
+      // TODO - CONSTANT THESE FIELD NAMES
       droughtCollection = db!.collection("drought");
       droughtStatusCollection = db!.collection("drought_status");
-      droughtStatusDescriptionCollection = db!.collection("drought_status_description");
+      droughtStatusDescriptionCollection = db!.collection("drought_status_descriptions");
       log('Connected to MongoDB');
     } catch (e) {
       log('Error connecting to MongoDB: $e');
@@ -32,6 +32,14 @@ class MongoDB {
 
   static Future<List<Map<String, dynamic>>> getDroughtData() async {
     return await getData(droughtCollection);
+  }
+
+  static Future<List<Map<String, dynamic>>> getDroughtStatusData() async {
+    return await getData(droughtStatusCollection);
+  }
+
+  static Future<List<Map<String, dynamic>>> getDroughtStatusDescriptionData() async {
+    return await getData(droughtStatusDescriptionCollection);
   }
 
   static Future<List<Map<String, dynamic>>> getData(DbCollection? dbCollection) async {

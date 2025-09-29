@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought.dart';
 
 import 'database/drought_statuses.dart' show DroughtStatuses;
-import 'database/mongodb_datasource.dart';
 import 'dialog/drought_status_dialog.dart';
 
 /*
@@ -56,25 +55,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<List<Map<String, dynamic>>>? futureData;
 
-  static final Map<String, Drought> droughtStatuses = DroughtStatuses.getDroughtStatuses();
+  Map<String, Color?> colours = {};
+  Map<String, Drought> droughtStatuses = {};
 
   @override
   void initState() {
     super.initState();
 
-    MongoDB.connect().then((_) {
+    DroughtStatuses.getDroughtStatuses().then((result) {
       setState(() {
-        futureData = MongoDB.getDroughtData();
+        droughtStatuses = result;
+        droughtStatuses.forEach((countyId, droughtStatus) => colours[countyId] = droughtStatus.getColour());
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, Color?> colours = {};
-    droughtStatuses.forEach((countyId, droughtStatus) => colours[countyId] = droughtStatus.getColour());
 
     return Scaffold(
       appBar: AppBar(
