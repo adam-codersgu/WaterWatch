@@ -1,4 +1,5 @@
 import 'package:water_watch/model/drought_status.dart';
+import 'package:water_watch/model/drought_status_description.dart';
 
 import '../constants/constants.dart' as Constants;
 import '../model/drought.dart';
@@ -19,10 +20,22 @@ class DroughtStatuses {
       droughtStatusDescriptionData = await MongoDB.getDroughtStatusDescriptionData();
     });
 
-    for (var dd in droughtData!) {
+    List<DroughtStatusDescription> droughtStatusDescriptions = [];
+    for (var dsd in droughtStatusDescriptionData!) {
+      droughtStatusDescriptions.add(DroughtStatusDescription.fromJson(dsd));
+    }
+
+    for (var droughtEntry in droughtData!) {
       // TODO - RESUME ASSEMBLING DROUGHT OBJECTS
-      Drought ds = Drought.fromJson(dd);
-      String name = ds.name;
+      Drought drought = Drought.fromJson(droughtEntry);
+      for (final String statusId in droughtEntry["statuses"]) {
+        final Map<String, dynamic> droughtStatusEntry = droughtStatusData!
+            .singleWhere((element) => statusId == element["_id"]);
+        final DroughtStatus droughtStatus = DroughtStatus.fromJson(droughtStatusEntry);
+        // TODO RESUME - NEED TO SET DESCRIPTION
+        // TODO REMOVE ENUM AND USE PATTERN MATCHING TO DETERMINE THE COLOUR
+      }
+      String name = drought.name;
     }
 
     return droughtStatuses;

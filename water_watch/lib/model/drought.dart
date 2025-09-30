@@ -6,17 +6,18 @@ import 'package:water_watch/model/drought_status.dart';
 class Drought {
   String areaId;
   String name;
-  // fixme
-  // List<DroughtStatus> statuses;
-  List<dynamic> statuses;
+  List<DroughtStatus> statuses = [];
 
-  Drought({required this.areaId, required this.name, required this.statuses});
+  Drought({required this.areaId, required this.name});
+
+  void addStatus(final DroughtStatus droughtStatus) {
+    statuses.add(droughtStatus);
+  }
 
   factory Drought.fromJson(final Map<String, dynamic> json) =>
       Drought(
         areaId: json["area_id"],
-        name: json["name"],
-        statuses: json["statuses"]
+        name: json["name"]
       );
 
   // fixme - uplift names
@@ -26,15 +27,14 @@ class Drought {
   };
 
   Color getColour() {
-    // fixme
-    /* if (statuses.any((item) => item.status == Status.drought)) {
+    if (statuses.any((item) => item.droughtStatus!.id == Status.drought.name)) {
       return Colors.red;
-    } else if (statuses.any((item) => item.status == Status.prolongedDryWeather)) {
+    } else if (statuses.any((item) => item.droughtStatus!.id == Status.prolongedDryWeather.name)) {
       return Colors.orange;
-    } else if (statuses.any((item) => item.status == Status.recovery)) {
+    } else if (statuses.any((item) => item.droughtStatus!.id == Status.recovery.name)) {
       return Colors.lightGreen;
-    } else { */
+    } else {
       return Colors.green;
-    // }
+    }
   }
 }
