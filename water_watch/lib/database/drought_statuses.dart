@@ -20,13 +20,12 @@ class DroughtStatuses {
       droughtStatusDescriptionData = await MongoDB.getDroughtStatusDescriptionData();
     });
 
-    List<DroughtStatusDescription> droughtStatusDescriptions = [];
+    Map<String, DroughtStatusDescription> droughtStatusDescriptions = {};
     for (var dsd in droughtStatusDescriptionData!) {
-      droughtStatusDescriptions.add(DroughtStatusDescription.fromJson(dsd));
+      droughtStatusDescriptions[dsd["_id"]] = DroughtStatusDescription.fromJson(dsd);
     }
 
     for (var droughtEntry in droughtData!) {
-      // TODO - RESUME ASSEMBLING DROUGHT OBJECTS
       Drought drought = Drought.fromJson(droughtEntry);
       for (final String statusId in droughtEntry["statuses"]) {
         final Map<String, dynamic> droughtStatusEntry = droughtStatusData!
