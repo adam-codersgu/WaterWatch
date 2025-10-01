@@ -18,6 +18,6 @@ class DroughtStatusDescription {
   };
 
   Status getStatus() {
-    return Status.values.firstWhere((e) => e.toString() == id);
+    return Status.values.firstWhere((e) => e.name == id);
   }
 }

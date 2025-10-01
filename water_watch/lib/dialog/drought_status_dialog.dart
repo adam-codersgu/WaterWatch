@@ -27,7 +27,7 @@ class DroughtStatusWidget extends StatelessWidget {
       }
       statusWidgets.addAll([
         Text(
-          "Temp",// fixme status.name,
+          status.name,
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
         ),
         Text(
