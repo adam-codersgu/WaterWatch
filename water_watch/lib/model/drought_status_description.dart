@@ -1,3 +1,5 @@
+enum Status { normal, prolongedDryWeather, drought, recovery }
+
 class DroughtStatusDescription {
   String id;
   String value;
@@ -14,4 +16,8 @@ class DroughtStatusDescription {
     "_id": id,
     "value": value,
   };
+
+  Status getStatus() {
+    return Status.values.firstWhere((e) => e.toString() == id);
+  }
 }

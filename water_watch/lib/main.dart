@@ -67,7 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
     DroughtStatuses.getDroughtStatuses().then((result) {
       setState(() {
         droughtStatuses = result;
-        droughtStatuses.forEach((countyId, droughtStatus) => colours[countyId] = droughtStatus.getColour());
+        Map<String, Color?> tempColours = {};
+        droughtStatuses.forEach((countyId, droughtStatus) => tempColours[countyId] = droughtStatus.getColour());
+        colours = tempColours;
       });
     });
   }

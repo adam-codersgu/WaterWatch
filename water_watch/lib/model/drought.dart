@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought_status.dart';
 
+import 'drought_status_description.dart';
+
 /// DOCUMENTATION
 ///   - https://medium.com/@desiappdev24/flutter-mongodb-how-to-display-data-in-your-flutter-app-day-3-8335c3cb7139
 class Drought {
@@ -27,11 +29,11 @@ class Drought {
   };
 
   Color getColour() {
-    if (statuses.any((item) => item.droughtStatus!.id == Status.drought.name)) {
+    if (statuses.any((item) => item.status!.id == Status.drought.name)) {
       return Colors.red;
-    } else if (statuses.any((item) => item.droughtStatus!.id == Status.prolongedDryWeather.name)) {
+    } else if (statuses.any((item) => item.status!.id == Status.prolongedDryWeather.name)) {
       return Colors.orange;
-    } else if (statuses.any((item) => item.droughtStatus!.id == Status.recovery.name)) {
+    } else if (statuses.any((item) => item.status!.id == Status.recovery.name)) {
       return Colors.lightGreen;
     } else {
       return Colors.green;

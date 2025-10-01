@@ -3,6 +3,7 @@ import 'package:water_watch/constants/constants.dart';
 
 import '../model/drought.dart';
 import '../model/drought_status.dart';
+import '../model/drought_status_description.dart';
 
 /**
  * DOCUMENTATION
@@ -19,9 +20,10 @@ class DroughtStatusWidget extends StatelessWidget {
     for (var status in droughtStatus.statuses) {
       final String summary;
       if (droughtStatus.areaId == scotlandAreaId) {
+        // todo - remove this and instead use custom values if an error occurs extracting the enum using getEnum()
         summary = "Conditions range from normal water availability in the west, to water scarcity in the east.";
       } else {
-        summary = "Temp"; //fixme getDroughtStatusSummary(status.status);
+        summary = getDroughtStatusSummary(status.status!);
       }
       statusWidgets.addAll([
         Text(
@@ -63,8 +65,8 @@ class DroughtStatusWidget extends StatelessWidget {
     );
   }
 
-  static getDroughtStatusSummary(final Status status) {
-    var statusDescription = switch (status) {
+  static getDroughtStatusSummary(final DroughtStatusDescription status) {
+    var statusDescription = switch (status.getStatus()) {
       Status.normal => "in normal conditions",
       Status.prolongedDryWeather => "experiencing prolonged dry weather",
       Status.recovery => "in recovery from drought",

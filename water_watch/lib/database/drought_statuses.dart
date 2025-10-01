@@ -29,12 +29,12 @@ class DroughtStatuses {
       Drought drought = Drought.fromJson(droughtEntry);
       for (final String statusId in droughtEntry["statuses"]) {
         final Map<String, dynamic> droughtStatusEntry = droughtStatusData!
-            .singleWhere((element) => statusId == element["_id"]);
+            .singleWhere((element) => statusId == element["_id"].$oid.toString());
         final DroughtStatus droughtStatus = DroughtStatus.fromJson(droughtStatusEntry);
-        // TODO RESUME - NEED TO SET DESCRIPTION
-        // TODO REMOVE ENUM AND USE PATTERN MATCHING TO DETERMINE THE COLOUR
+        droughtStatus.status = droughtStatusDescriptions[droughtStatusEntry["drought_status"]];
+        drought.addStatus(droughtStatus);
       }
-      String name = drought.name;
+      droughtStatuses[drought.areaId] = drought;
     }
 
     return droughtStatuses;
@@ -44,28 +44,7 @@ class DroughtStatuses {
   static Map<String, Drought> getDroughtStatusesOld() {
     Map<String, Drought> droughtStatuses = {};
 
-    /// North East
-    /*var neaStatus = DroughtStatus(name: Constants.nea, status: Status.prolongedDryWeather);
-    var gbUKCDrought = Drought(areaId: Constants.northEastAreaId, statuses: [neaStatus]);
-    droughtStatuses[Constants.northEastAreaId] = gbUKCDrought;
-
-    /// North West
-    var claStatus = DroughtStatus(name: Constants.cla, status: Status.drought);
-    var gmmcStatus = DroughtStatus(name: Constants.gmmc, status: Status.drought);
-    var gbUKDDrought = Drought(areaId: Constants.northWestAreaId, statuses: [claStatus, gmmcStatus]);
-    droughtStatuses[Constants.northWestAreaId] = gbUKDDrought;
-
-    /// Yorkshire and the Humber
-    var yorStatus = DroughtStatus(name: Constants.yor, status: Status.drought);
-    var gbUKEDrought = Drought(areaId: Constants.southEastAreaId, statuses: [yorStatus]);
-    droughtStatuses[Constants.yorkshireAreaId] = gbUKEDrought;
-
-    /// East Midlands
-    var emdStatus = DroughtStatus(name: Constants.emd, status: Status.drought);
-    var lnaStatus = DroughtStatus(name: Constants.lna, status: Status.prolongedDryWeather);
-    var gbUKFDrought = Drought(areaId: Constants.eastMidlandsAreaId, statuses: [emdStatus, lnaStatus]);
-    droughtStatuses[Constants.eastMidlandsAreaId] = gbUKFDrought;
-
+    /*
     /// West Midlands
     var wmdStatus = DroughtStatus(name: Constants.wmd, status: Status.drought);
     var gbUKGDrought = Drought(areaId: Constants.westMidlandsAreaId, statuses: [wmdStatus]);
