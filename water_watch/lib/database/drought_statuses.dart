@@ -45,28 +45,6 @@ class DroughtStatuses {
     Map<String, Drought> droughtStatuses = {};
 
     /*
-    /// West Midlands
-    var wmdStatus = DroughtStatus(name: Constants.wmd, status: Status.drought);
-    var gbUKGDrought = Drought(areaId: Constants.westMidlandsAreaId, statuses: [wmdStatus]);
-    droughtStatuses[Constants.westMidlandsAreaId] = gbUKGDrought;
-
-    /// East of England
-    var eanStatus = DroughtStatus(name: Constants.ean, status: Status.prolongedDryWeather);
-    var gbUKHDrought = Drought(areaId: Constants.eastAreaId, statuses: [eanStatus]);
-    droughtStatuses[Constants.eastAreaId] = gbUKHDrought;
-
-    /// Greater London
-    var hnlStatus = DroughtStatus(name: Constants.hnl, status: Status.normal);
-    var gbUKIDrought = Drought(areaId: Constants.londonAreaId, statuses: [hnlStatus]);
-    droughtStatuses[Constants.londonAreaId] = gbUKIDrought;
-
-    /// South East
-    var kslStatus = DroughtStatus(name: Constants.ksl, status: Status.normal);
-    var ssdStatus = DroughtStatus(name: Constants.ssd, status: Status.prolongedDryWeather);
-    var thmStatus = DroughtStatus(name: Constants.thm, status: Status.prolongedDryWeather);
-    var gbUKJDrought = Drought(areaId: Constants.southEastAreaId, statuses: [kslStatus, ssdStatus, thmStatus]);
-    droughtStatuses[Constants.southEastAreaId] = gbUKJDrought;
-
     /// South West
     // https://naturalengland-defra.opendata.arcgis.com/datasets/Defra::administrative-boundaries-environment-agency-and-natural-england-public-face-areas/explore?location=51.889776%2C-3.165840%2C6.57
     var dcsStatus = DroughtStatus(name: Constants.dcs, status: Status.normal);

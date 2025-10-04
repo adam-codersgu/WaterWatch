@@ -60,3 +60,8 @@ const String walesDrought = """The North, East and South (Dee, Clwyd,
 Ynys Mon, North Gwynedd, South Gwynedd, Upper Severn 
 and Wye, Usk, Valleys and Vale of Glamorgan)""";
 const String walesProlongedDryWeather = "The West (North Ceredigion, Teifi, Pembrokeshire, Carmarthen and Swansea & Llanelli";
+
+/// Collections
+const String droughtCollection = "drought";
+const String droughtStatusCollection = "drought_status";
+const String droughtStatusDescriptionsCollection = "drought_status_descriptions";
