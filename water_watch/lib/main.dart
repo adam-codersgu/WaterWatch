@@ -98,32 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.92,
-                    // alignment: Alignment.center,
-                    // TODO - ON HOVER CHANGE CURSOR TO POINTER?
-                    /* https://api.flutter.dev/flutter/services/MouseCursor-class.html
-                 * DO SOMETHING LIKE THIS
-                 * WRAP THE ENTIRE LAYOUT IN A MOUSEREGION
-                 * SET THE CURSOR PROPERTY TO A VARIABLE
-                 * CHANGE THE CURSOR PROPERTY TO POINTER IN THE ONHOVER CALLBACK
-                 * OF THE MAP, SO WE SEE A CURSOR POINTER WHEN HOVERING ON A COUNTY?
-                 *   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: MouseRegion(
-        cursor: SystemMouseCursors.text,
-        child: Container(
-          width: 200,
-          height: 100,
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            border: Border.all(color: Colors.yellow),
-          ),
-        ),
-      ),
-    );
-  }
-                 *
-                 */
                     child: SimpleMap(
                       instructions: SMapUnitedKingdom.instructions,
                       countryBorder: CountryBorder(color: Colors.white),

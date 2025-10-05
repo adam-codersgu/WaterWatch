@@ -5,6 +5,12 @@ import '../constants/constants.dart' as Constants;
 import '../model/drought.dart';
 import 'mongodb_datasource.dart';
 
+/*
+- https://beta.sepa.scot/water-scarcity/previous-reports/18-september-2025/
+- https://naturalengland-defra.opendata.arcgis.com/datasets/Defra::administrative-boundaries-environment-agency-and-natural-england-public-face-areas/explore?location=51.889776%2C-3.165840%2C6.57
+- https://api-portal.naturalresources.wales/apis
+- https://naturalresources.wales/about-us/news-and-blogs/blogs/dry-weather-updates-2025/?lang=en
+ */
 class DroughtStatuses {
 
   static Future<Map<String, Drought>> getDroughtStatuses() async {
@@ -26,7 +32,7 @@ class DroughtStatuses {
     }
 
     for (var droughtEntry in droughtData!) {
-      Drought drought = Drought.fromJson(droughtEntry);
+      final Drought drought = Drought.fromJson(droughtEntry);
       for (final String statusId in droughtEntry["statuses"]) {
         final Map<String, dynamic> droughtStatusEntry = droughtStatusData!
             .singleWhere((element) => statusId == element["_id"].$oid.toString());
@@ -44,28 +50,7 @@ class DroughtStatuses {
   static Map<String, Drought> getDroughtStatusesOld() {
     Map<String, Drought> droughtStatuses = {};
 
-    /*
-    /// South West
-    // https://naturalengland-defra.opendata.arcgis.com/datasets/Defra::administrative-boundaries-environment-agency-and-natural-england-public-face-areas/explore?location=51.889776%2C-3.165840%2C6.57
-    var dcsStatus = DroughtStatus(name: Constants.dcs, status: Status.normal);
-    var wsxStatus = DroughtStatus(name: Constants.wsx, status: Status.prolongedDryWeather);
-    var gbUKKDrought = Drought(areaId: Constants.southWestAreaId, statuses: [dcsStatus, wsxStatus]);
-    droughtStatuses[Constants.southWestAreaId] = gbUKKDrought;
-
-    /// Wales
-    // https://api-portal.naturalresources.wales/apis
-    // https://naturalresources.wales/about-us/news-and-blogs/blogs/dry-weather-updates-2025/?lang=en
-    var walesDroughtStatus = DroughtStatus(name: Constants.walesDrought, status: Status.drought);
-    var walesProlongedDryWeatherStatus = DroughtStatus(name: Constants.walesProlongedDryWeather, status: Status.prolongedDryWeather);
-    var gbUKLDrought = Drought(areaId: Constants.walesAreaId, statuses: [walesDroughtStatus, walesProlongedDryWeatherStatus]);
-    droughtStatuses[Constants.walesAreaId] = gbUKLDrought;
-
-    /// Scotland
-    // https://beta.sepa.scot/water-scarcity/previous-reports/18-september-2025/
-    var scotlandStatus = DroughtStatus(name: Constants.scotland, status: Status.prolongedDryWeather);
-    var gbUKMDrought = Drought(areaId: Constants.scotlandAreaId, statuses: [scotlandStatus]);
-    droughtStatuses[Constants.scotlandAreaId] = gbUKMDrought;
-
+/*
     /// Northern Ireland
     // https://www.infrastructure-ni.gov.uk/articles/dfi-rivers-water-level-network
     var northernIrelandStatus = DroughtStatus(name: Constants.northernIreland, status: Status.normal);
