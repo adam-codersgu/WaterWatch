@@ -1,7 +1,6 @@
 import 'package:water_watch/model/drought_status.dart';
 import 'package:water_watch/model/drought_status_description.dart';
 
-import '../constants/constants.dart' as Constants;
 import '../model/drought.dart';
 import 'mongodb_datasource.dart';
 
@@ -10,6 +9,10 @@ import 'mongodb_datasource.dart';
 - https://naturalengland-defra.opendata.arcgis.com/datasets/Defra::administrative-boundaries-environment-agency-and-natural-england-public-face-areas/explore?location=51.889776%2C-3.165840%2C6.57
 - https://api-portal.naturalresources.wales/apis
 - https://naturalresources.wales/about-us/news-and-blogs/blogs/dry-weather-updates-2025/?lang=en
+- https://www.infrastructure-ni.gov.uk/articles/dfi-rivers-water-level-network
+- https://water.gg/extra-pages/water-storage/
+- https://www.manxutilities.im/sustainability/latest-reservoir-levels/
+- https://www.irishpost.com/news/drought-status-declared-in-nearly-a-third-of-all-irish-counties-293954
  */
 class DroughtStatuses {
 
@@ -42,43 +45,6 @@ class DroughtStatuses {
       }
       droughtStatuses[drought.areaId] = drought;
     }
-
-    return droughtStatuses;
-  }
-  
-  @Deprecated("Use getDroughtStatuses()")
-  static Map<String, Drought> getDroughtStatusesOld() {
-    Map<String, Drought> droughtStatuses = {};
-
-/*
-    /// Northern Ireland
-    // https://www.infrastructure-ni.gov.uk/articles/dfi-rivers-water-level-network
-    var northernIrelandStatus = DroughtStatus(name: Constants.northernIreland, status: Status.normal);
-    var gbUKNDrought = Drought(areaId: Constants.northernIrelandAreaId, statuses: [northernIrelandStatus]);
-    droughtStatuses[Constants.northernIrelandAreaId] = gbUKNDrought;
-
-    /// Guernsey
-    // https://water.gg/extra-pages/water-storage/
-    var guernseyStatus = DroughtStatus(name: Constants.guernsey, status: Status.normal);
-    var ggGGDrought = Drought(areaId: Constants.guernseyAreaId, statuses: [guernseyStatus]);
-    droughtStatuses[Constants.guernseyAreaId] = ggGGDrought;
-
-    /// Jersey
-    var jerseyStatus = DroughtStatus(name: Constants.jersey, status: Status.normal);
-    var jeJEDrought = Drought(areaId: Constants.jerseyAreaId, statuses: [jerseyStatus]);
-    droughtStatuses[Constants.jerseyAreaId] = jeJEDrought;
-
-    /// Isle of Man
-    // https://www.manxutilities.im/sustainability/latest-reservoir-levels/
-    var isleOfManStatus = DroughtStatus(name: Constants.isleOfMan, status: Status.normal);
-    var imIMDrought = Drought(areaId: Constants.isleOfManAreaId, statuses: [isleOfManStatus]);
-    droughtStatuses[Constants.isleOfManAreaId] = imIMDrought;
-
-    /// Ireland
-    // https://www.irishpost.com/news/drought-status-declared-in-nearly-a-third-of-all-irish-counties-293954
-    var roIrelandStatus = DroughtStatus(name: Constants.roIreland, status: Status.drought);
-    var ieIEDrought = Drought(areaId: Constants.roIrelandAreaId, statuses: [roIrelandStatus]);
-    droughtStatuses[Constants.roIrelandAreaId] = ieIEDrought;*/
 
     return droughtStatuses;
   }
