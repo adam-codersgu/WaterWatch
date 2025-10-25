@@ -32,7 +32,12 @@ class MongoDB {
   }
 
   static Future<List<Map<String, dynamic>>> getDroughtData() async {
-    return await getData(droughtDbCollection);
+    final List<Map<String, dynamic>> droughtData = await getMostRecentDroughtData();
+    final List<ObjectId> ids = [];
+    for (var data in droughtData) {
+      ids.add(data["max_id"]);
+    }
+    return await getDataByIds(droughtDbCollection, ids);
   }
 
   static Future<List<Map<String, dynamic>>> getDroughtStatusData() async {
@@ -49,6 +54,13 @@ class MongoDB {
     return arrData;
   }
 
+  static Future<List<Map<String, dynamic>>> getDataByIds(final DbCollection? dbCollection,
+      final List<ObjectId> ids) async {
+    final arrData = await dbCollection!.find(where.oneFrom("_id", ids)).toList();
+    log('Data in collection ${dbCollection.collectionName}: ${arrData.toString()}');
+    return arrData;
+  }
+
   static Future<String> getConnectionString() async {
     await dotenv.load(fileName: ".env");
     final username = dotenv.env['DB_USERNAME'];
@@ -56,5 +68,19 @@ class MongoDB {
     final cluster = dotenv.env['DB_CLUSTER'];
     final name = dotenv.env['DB_NAME'];
     return "mongodb+srv://$username:$password@$cluster.smtynbd.mongodb.net/$name";
+  }
+
+  static Future<List<Map<String, dynamic>>> getMostRecentDroughtData() async {
+    final pipeline = AggregationPipelineBuilder()
+        .addStage(
+        Group(
+            id: Field('area_id'),
+            fields: {
+              'max_id': Max(Field('_id'))
+            }
+        )
+        ).build();
+    return await DbCollection(db!, droughtCollection)
+        .aggregateToStream(pipeline).toList();
   }
 }

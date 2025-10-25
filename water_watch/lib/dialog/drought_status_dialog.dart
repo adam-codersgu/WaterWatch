@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
 
 import '../model/drought.dart';
 import '../model/drought_status_description.dart';
@@ -10,10 +9,9 @@ DOCUMENTATION
  */
 class DroughtStatusWidget extends StatelessWidget {
 
-  final log = Logger('DroughtStatusWidget');
   final Drought droughtStatus;
 
-  DroughtStatusWidget({super.key, required this.droughtStatus});
+  const DroughtStatusWidget({super.key, required this.droughtStatus});
 
   @override
   Widget build(BuildContext context) {
