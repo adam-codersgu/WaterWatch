@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:water_watch/constants/constants.dart';
+import 'package:logging/logging.dart';
 
 import '../model/drought.dart';
-import '../model/drought_status.dart';
 import '../model/drought_status_description.dart';
 
-/**
- * DOCUMENTATION
- *   - https://medium.com/@hemantkumarceo001/day-22-creating-custom-dialogs-in-flutter-a-step-by-step-guide-for-our-noted-app-beb33203ce57
+/*
+DOCUMENTATION
+ - https://medium.com/@hemantkumarceo001/day-22-creating-custom-dialogs-in-flutter-a-step-by-step-guide-for-our-noted-app-beb33203ce57
  */
 class DroughtStatusWidget extends StatelessWidget {
+
+  final log = Logger('DroughtStatusWidget');
   final Drought droughtStatus;
 
-  const DroughtStatusWidget({super.key, required this.droughtStatus});
+  DroughtStatusWidget({super.key, required this.droughtStatus});
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> statusWidgets = [];
     for (var status in droughtStatus.statuses) {
       final String summary;
-      if (droughtStatus.areaId == scotlandAreaId) {
-        // todo - remove this and instead use custom values if an error occurs extracting the enum using getEnum()
-        summary = "Conditions range from normal water availability in the west, to water scarcity in the east.";
+      if (status.detailedStatus != null) {
+        summary = status.detailedStatus!;
       } else {
         summary = getDroughtStatusSummary(status.status!);
       }
+
       statusWidgets.addAll([
         Text(
           status.name,

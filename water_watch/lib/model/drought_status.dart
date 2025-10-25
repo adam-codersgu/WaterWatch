@@ -7,11 +7,18 @@ class DroughtStatus {
   String shortCode;
   DroughtStatusDescription? status;
   String name;
+  String? detailedStatus;
 
-  DroughtStatus({required this.shortCode, required this.name});
+  DroughtStatus({required this.shortCode, required this.name, this.detailedStatus});
 
   factory DroughtStatus.fromJson(final Map<String, dynamic> json) =>
-      DroughtStatus(shortCode: json["short_code"], name: json["name"]);
+      DroughtStatus(shortCode: json["short_code"],
+          name: json["name"],
+          detailedStatus: json["detailed_status"]);
 
-  Map<String, dynamic> toJson() => {"short_code": shortCode, "name": name};
+  Map<String, dynamic> toJson() => {
+    "short_code": shortCode,
+    "name": name,
+    "detailed_status": detailedStatus
+  };
 }
