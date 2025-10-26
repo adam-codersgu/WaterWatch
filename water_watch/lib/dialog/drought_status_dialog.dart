@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:water_watch/constants/constants.dart';
 
 import '../model/drought.dart';
-import '../model/drought_status.dart';
+import '../model/drought_status_description.dart';
 
-/**
- * DOCUMENTATION
- *   - https://medium.com/@hemantkumarceo001/day-22-creating-custom-dialogs-in-flutter-a-step-by-step-guide-for-our-noted-app-beb33203ce57
+/*
+DOCUMENTATION
+ - https://medium.com/@hemantkumarceo001/day-22-creating-custom-dialogs-in-flutter-a-step-by-step-guide-for-our-noted-app-beb33203ce57
  */
 class DroughtStatusWidget extends StatelessWidget {
+
   final Drought droughtStatus;
 
   const DroughtStatusWidget({super.key, required this.droughtStatus});
@@ -18,11 +18,12 @@ class DroughtStatusWidget extends StatelessWidget {
     final List<Widget> statusWidgets = [];
     for (var status in droughtStatus.statuses) {
       final String summary;
-      if (droughtStatus.areaId == scotlandAreaId) {
-        summary = "Conditions range from normal water availability in the west, to water scarcity in the east.";
+      if (status.detailedStatus != null) {
+        summary = status.detailedStatus!;
       } else {
-        summary = getDroughtStatusSummary(status.status);
+        summary = getDroughtStatusSummary(status.status!);
       }
+
       statusWidgets.addAll([
         Text(
           status.name,
@@ -63,8 +64,8 @@ class DroughtStatusWidget extends StatelessWidget {
     );
   }
 
-  static getDroughtStatusSummary(final Status status) {
-    var statusDescription = switch (status) {
+  static getDroughtStatusSummary(final DroughtStatusDescription status) {
+    var statusDescription = switch (status.getStatus()) {
       Status.normal => "in normal conditions",
       Status.prolongedDryWeather => "experiencing prolonged dry weather",
       Status.recovery => "in recovery from drought",
