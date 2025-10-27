@@ -22,10 +22,10 @@ class Drought {
         name: json["name"]
       );
 
-  // fixme - uplift names
+  // fixme - need to handle statuses too (incl. if null)
   Map<String, dynamic> toJson() => {
-    "areaId": areaId,
-    "status": statuses,
+    "area_id": areaId,
+    "name": name
   };
 
   Color getColour() {
