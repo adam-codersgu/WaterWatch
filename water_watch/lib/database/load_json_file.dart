@@ -7,9 +7,10 @@ import '../model/drought.dart';
 
 class JSONLoader {
 
+  static const String dbFile = "resources/data/data_backup_2025_10_10.json";
+
   static Future<String> loadAsset() async {
-    // TODO - CONSTANT
-    final String fileText = await rootBundle.loadString('resources/data/data_backup_2025_10_10.json');
+    final String fileText = await rootBundle.loadString(dbFile);
     log('The extracted file text:\n$fileText');
     final Map<String, dynamic> droughtStatusesDynamic = jsonDecode(fileText);
     Map<String, Drought> droughtStatuses = droughtStatusesDynamic
