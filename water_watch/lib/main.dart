@@ -65,15 +65,24 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     // todo Better use Futures to update UI? https://www.geeksforgeeks.org/flutter/flutter-what-is-future-and-how-to-use-it/
-    DroughtStatuses.getDroughtStatuses().then((result) {
+    JSONLoader.loadAsset().then((result) {
       setState(() {
-        JSONLoader.loadAsset();
         droughtStatuses = result;
         Map<String, Color?> tempColours = {};
         droughtStatuses.forEach((countyId, droughtStatus) => tempColours[countyId] = droughtStatus.getColour());
         colours = tempColours;
       });
     });
+
+    // todo Implement device-specific handling to getDroughtStatuses to load from JSON file or mongoDB
+    /* DroughtStatuses.getDroughtStatuses().then((result) {
+      setState(() {
+        droughtStatuses = result;
+        Map<String, Color?> tempColours = {};
+        droughtStatuses.forEach((countyId, droughtStatus) => tempColours[countyId] = droughtStatus.getColour());
+        colours = tempColours;
+      });
+    }); */
   }
 
   @override
