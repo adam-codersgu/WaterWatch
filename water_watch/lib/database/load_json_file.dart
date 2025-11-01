@@ -18,6 +18,10 @@ class JSONLoader {
     return fileText;
   }
 
+  /**
+   * Used for extracting the JSON from a MongoDB call
+   * e.g. JSONLoader.convertToJson(result);
+   */
   static void convertToJson(final Map<String, dynamic> list) {
     log('The result is: \n${jsonEncode(list)}');
   }
