@@ -9,7 +9,7 @@ class JSONLoader {
 
   static const String dbFile = "resources/data/data_backup_2025_10_10.json";
 
-  static Future<Map<String, Drought>> loadAsset() async {
+  static Future<Map<String, Drought>> getDroughtStatuses() async {
     final String fileText = await rootBundle.loadString(dbFile);
     log('The extracted file text:\n$fileText');
     final Map<String, dynamic> droughtStatusesDynamic = jsonDecode(fileText);

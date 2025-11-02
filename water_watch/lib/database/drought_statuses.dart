@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:water_watch/model/drought_status.dart';
 import 'package:water_watch/model/drought_status_description.dart';
 
 import '../model/drought.dart';
+import 'file_datasource.dart';
 import 'mongodb_datasource.dart';
 
 /*
@@ -15,8 +17,15 @@ import 'mongodb_datasource.dart';
 - https://www.irishpost.com/news/drought-status-declared-in-nearly-a-third-of-all-irish-counties-293954
  */
 class DroughtStatuses {
-
   static Future<Map<String, Drought>> getDroughtStatuses() async {
+    if (kIsWeb) {
+      return JSONLoader.getDroughtStatuses();
+    } else {
+      return _getDroughtStatusesMongoDb();
+    }
+  }
+
+  static Future<Map<String, Drought>> _getDroughtStatusesMongoDb() async {
     Map<String, Drought> droughtStatuses = {};
 
     List<Map<String, dynamic>>? droughtData;
@@ -26,21 +35,29 @@ class DroughtStatuses {
     await MongoDB.connect().then((_) async {
       droughtData = await MongoDB.getDroughtData();
       droughtStatusData = await MongoDB.getDroughtStatusData();
-      droughtStatusDescriptionData = await MongoDB.getDroughtStatusDescriptionData();
+      droughtStatusDescriptionData =
+          await MongoDB.getDroughtStatusDescriptionData();
     });
 
     Map<String, DroughtStatusDescription> droughtStatusDescriptions = {};
     for (var dsd in droughtStatusDescriptionData!) {
-      droughtStatusDescriptions[dsd["_id"]] = DroughtStatusDescription.fromJson(dsd);
+      droughtStatusDescriptions[dsd["_id"]] = DroughtStatusDescription.fromJson(
+        dsd,
+      );
     }
 
     for (var droughtEntry in droughtData!) {
       final Drought drought = Drought.fromJson(droughtEntry);
       for (final String statusId in droughtEntry["statuses"]) {
         final Map<String, dynamic> droughtStatusEntry = droughtStatusData!
-            .singleWhere((element) => statusId == element["_id"].$oid.toString());
-        final DroughtStatus droughtStatus = DroughtStatus.fromJson(droughtStatusEntry);
-        droughtStatus.status = droughtStatusDescriptions[droughtStatusEntry["drought_status"]];
+            .singleWhere(
+              (element) => statusId == element["_id"].$oid.toString(),
+            );
+        final DroughtStatus droughtStatus = DroughtStatus.fromJson(
+          droughtStatusEntry,
+        );
+        droughtStatus.status =
+            droughtStatusDescriptions[droughtStatusEntry["drought_status"]];
         drought.addStatus(droughtStatus);
       }
       droughtStatuses[drought.areaId] = drought;

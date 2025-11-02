@@ -1,6 +1,5 @@
 import 'package:countries_world_map/countries_world_map.dart';
 import 'package:flutter/material.dart';
-import 'package:water_watch/database/load_json_file.dart';
 import 'package:water_watch/model/drought.dart';
 
 import 'database/drought_statuses.dart' show DroughtStatuses;
@@ -65,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     // todo Better use Futures to update UI? https://www.geeksforgeeks.org/flutter/flutter-what-is-future-and-how-to-use-it/
-    JSONLoader.loadAsset().then((result) {
+    DroughtStatuses.getDroughtStatuses().then((result) {
       setState(() {
         droughtStatuses = result;
         Map<String, Color?> tempColours = {};
@@ -73,16 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
         colours = tempColours;
       });
     });
-
-    // todo Implement device-specific handling to getDroughtStatuses to load from JSON file or mongoDB
-    /* DroughtStatuses.getDroughtStatuses().then((result) {
-      setState(() {
-        droughtStatuses = result;
-        Map<String, Color?> tempColours = {};
-        droughtStatuses.forEach((countyId, droughtStatus) => tempColours[countyId] = droughtStatus.getColour());
-        colours = tempColours;
-      });
-    }); */
   }
 
   @override
