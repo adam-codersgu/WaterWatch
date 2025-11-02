@@ -11,13 +11,23 @@ class DroughtStatus {
 
   DroughtStatus({required this.shortCode, required this.name, this.detailedStatus});
 
-  factory DroughtStatus.fromJson(final Map<String, dynamic> json) =>
-      DroughtStatus(shortCode: json["short_code"],
-          name: json["name"],
-          detailedStatus: json["detailed_status"]);
+  factory DroughtStatus.fromJson(final Map<String, dynamic> json) {
+    final DroughtStatus status = DroughtStatus(
+        shortCode: json["short_code"],
+        name: json["name"],
+        detailedStatus: json["detailed_status"]
+    );
+
+    if (json["status"] != null) {
+      status.status = DroughtStatusDescription.fromJson(json["status"]);
+    }
+
+    return status;
+  }
 
   Map<String, dynamic> toJson() => {
     "short_code": shortCode,
+    "status": status,
     "name": name,
     "detailed_status": detailedStatus
   };

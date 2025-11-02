@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought_status.dart';
 
@@ -10,22 +12,33 @@ class Drought {
   String name;
   List<DroughtStatus> statuses = [];
 
-  Drought({required this.areaId, required this.name});
+  Drought({required this.areaId, required this.name, required this.statuses});
 
   void addStatus(final DroughtStatus droughtStatus) {
     statuses.add(droughtStatus);
   }
 
-  factory Drought.fromJson(final Map<String, dynamic> json) =>
-      Drought(
+  // fixme - need to handle statuses too (incl. if null)
+  factory Drought.fromJson(final Map<String, dynamic> json) {
+    final List<DroughtStatus> jStatuses = [];
+    try {
+      json["statuses"].forEach((status) =>
+          jStatuses.add(DroughtStatus.fromJson(status)));
+    } catch (e) {
+      log('Exception caught when extracting DroughtStatuses ${e.toString()}');
+    }
+    return Drought(
         areaId: json["area_id"],
-        name: json["name"]
-      );
+        name: json["name"],
+        statuses: jStatuses
+    );
+  }
 
-  // fixme - uplift names
+
   Map<String, dynamic> toJson() => {
-    "areaId": areaId,
-    "status": statuses,
+    "area_id": areaId,
+    "name": name,
+    "statuses": statuses
   };
 
   Color getColour() {
