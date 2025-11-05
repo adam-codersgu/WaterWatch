@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:water_watch/model/drought.dart';
 
 import 'database/drought_statuses.dart' show DroughtStatuses;
+import 'database/file_datasource.dart';
 import 'dialog/drought_status_dialog.dart';
 
 /*
@@ -66,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // todo Better use Futures to update UI? https://www.geeksforgeeks.org/flutter/flutter-what-is-future-and-how-to-use-it/
     DroughtStatuses.getDroughtStatuses().then((result) {
       setState(() {
+        JSONLoader.convertToJson(result);
         droughtStatuses = result;
         Map<String, Color?> tempColours = {};
         droughtStatuses.forEach((countyId, droughtStatus) => tempColours[countyId] = droughtStatus.getColour());

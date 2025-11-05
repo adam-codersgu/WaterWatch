@@ -5,8 +5,6 @@ import 'package:water_watch/model/drought_status.dart';
 
 import 'drought_status_description.dart';
 
-/// DOCUMENTATION
-///   - https://medium.com/@desiappdev24/flutter-mongodb-how-to-display-data-in-your-flutter-app-day-3-8335c3cb7139
 class Drought {
   String areaId;
   String name;
@@ -18,7 +16,6 @@ class Drought {
     statuses.add(droughtStatus);
   }
 
-  // fixme - need to handle statuses too (incl. if null)
   factory Drought.fromJson(final Map<String, dynamic> json) {
     final List<DroughtStatus> jStatuses = [];
     try {

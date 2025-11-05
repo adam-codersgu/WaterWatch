@@ -50,14 +50,14 @@ class MongoDB {
 
   static Future<List<Map<String, dynamic>>> getData(final DbCollection? dbCollection) async {
     final arrData = await dbCollection!.find().toList();
-    log('Data in collection ${dbCollection.collectionName}: ${arrData.toString()}');
+    log('Fetched data from collection ${dbCollection.collectionName}}');
     return arrData;
   }
 
   static Future<List<Map<String, dynamic>>> getDataByIds(final DbCollection? dbCollection,
       final List<ObjectId> ids) async {
     final arrData = await dbCollection!.find(where.oneFrom("_id", ids)).toList();
-    log('Data in collection ${dbCollection.collectionName}: ${arrData.toString()}');
+    log('Fetched data from collection ${dbCollection.collectionName}}');
     return arrData;
   }
 
