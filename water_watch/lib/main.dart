@@ -78,43 +78,44 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: InteractiveViewer(
-              maxScale: 75,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.92,
-                    child: SimpleMap(
-                      instructions: SMapUnitedKingdom.instructions,
-                      countryBorder: CountryBorder(color: Colors.white),
-                      colors: colours,
-                      callback: (id, name, tapDetails) {
-                        final droughtStatus = droughtStatuses[id];
-                        if (id != "" && droughtStatus != null) {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DroughtStatusWidget(droughtStatus: droughtStatus);
-                            },
-                          );
-                        }
-                      },
+          Expanded(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: InteractiveViewer(
+                maxScale: 75,
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.92,
+                      child: SimpleMap(
+                        instructions: SMapUnitedKingdom.instructions,
+                        countryBorder: CountryBorder(color: Colors.white),
+                        colors: colours,
+                        callback: (id, name, tapDetails) {
+                          final droughtStatus = droughtStatuses[id];
+                          if (id != "" && droughtStatus != null) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return DroughtStatusWidget(droughtStatus: droughtStatus);
+                              },
+                            );
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: RichText(
+              textAlign: TextAlign.center,
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
