@@ -79,84 +79,93 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: InteractiveViewer(
-                maxScale: 75,
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.92,
-                      child: SimpleMap(
-                        instructions: SMapUnitedKingdom.instructions,
-                        countryBorder: CountryBorder(color: Colors.white),
-                        colors: colours,
-                        callback: (id, name, tapDetails) {
-                          final droughtStatus = droughtStatuses[id];
-                          if (id != "" && droughtStatus != null) {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return DroughtStatusWidget(droughtStatus: droughtStatus);
-                              },
-                            );
-                          }
-                        },
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: SizedBox(
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                child: InteractiveViewer(
+                  maxScale: 75,
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.92,
+                        child: SimpleMap(
+                          instructions: SMapUnitedKingdom.instructions,
+                          countryBorder: CountryBorder(color: Colors.white),
+                          colors: colours,
+                          callback: (id, name, tapDetails) {
+                            final droughtStatus = droughtStatuses[id];
+                            if (id != "" && droughtStatus != null) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return DroughtStatusWidget(
+                                      droughtStatus: droughtStatus);
+                                },
+                              );
+                            }
+                          },
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Data is sourced from the ',
+                      style: TextStyle(color: Colors.black87),
                     ),
+                    TextSpan(
+                      text: 'Environment Agency',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () =>
+                            launchUrlString(
+                                'https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england'),
+                    ),
+                    TextSpan(
+                      text: ' under ',
+                      style: TextStyle(color: Colors.black87),
+                    ),
+                    TextSpan(
+                      text: 'Open Government Licence (OGL)',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () =>
+                            launchUrlString(
+                                'https://www.gov.uk/help/terms-conditions'),
+                    ),
+                    TextSpan(
+                      text: '.',
+                      style: TextStyle(color: Colors.black87),
+                    )
                   ],
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'Data is sourced from the ',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  TextSpan(
-                    text: 'Environment Agency',
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () =>
-                          launchUrlString(
-                              'https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england'),
-                  ),
-                  TextSpan(
-                    text: ' under ',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  TextSpan(
-                    text: 'Open Government Licence (OGL)',
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () =>
-                          launchUrlString(
-                              'https://www.gov.uk/help/terms-conditions'),
-                  ),
-                  TextSpan(
-                    text: '.',
-                    style: TextStyle(color: Colors.black87),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
