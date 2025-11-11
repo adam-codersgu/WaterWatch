@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Map<String, Color?> colours = {};
   Map<String, Drought> droughtStatuses = {};
+  MouseCursor cursor = SystemMouseCursors.basic;
 
   @override
   void initState() {
@@ -83,39 +84,49 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: SizedBox(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                child: InteractiveViewer(
-                  maxScale: 75,
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.92,
-                        child: SimpleMap(
-                          instructions: SMapUnitedKingdom.instructions,
-                          countryBorder: CountryBorder(color: Colors.white),
-                          colors: colours,
-                          callback: (id, name, tapDetails) {
-                            final droughtStatus = droughtStatuses[id];
-                            if (id != "" && droughtStatus != null) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return DroughtStatusWidget(
-                                      droughtStatus: droughtStatus);
-                                },
-                              );
-                            }
-                          },
+              child: MouseRegion(
+                cursor: cursor,
+                child: SizedBox(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  child: InteractiveViewer(
+                    maxScale: 75,
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.92,
+                          child: SimpleMap(
+                            instructions: SMapUnitedKingdom.instructions,
+                            countryBorder: CountryBorder(color: Colors.white),
+                            colors: colours,
+                            callback: (id, name, tapDetails) {
+                              final droughtStatus = droughtStatuses[id];
+                              if (id != "" && droughtStatus != null) {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return DroughtStatusWidget(
+                                        droughtStatus: droughtStatus);
+                                  },
+                                );
+                              }
+                            },
+                            onHover: (id, name, isHovering) {
+                              if (isHovering) {
+                                cursor = SystemMouseCursors.click;
+                              } else {
+                                cursor = SystemMouseCursors.basic;
+                              }
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
