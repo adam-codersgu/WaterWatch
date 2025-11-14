@@ -1,9 +1,10 @@
 import 'package:countries_world_map/countries_world_map.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:water_watch/model/drought.dart';
 
 import 'database/drought_statuses.dart' show DroughtStatuses;
-import 'database/file_datasource.dart';
 import 'dialog/drought_status_dialog.dart';
 
 /*
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Map<String, Color?> colours = {};
   Map<String, Drought> droughtStatuses = {};
+  MouseCursor cursor = SystemMouseCursors.basic;
 
   @override
   void initState() {
@@ -67,7 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // todo Better use Futures to update UI? https://www.geeksforgeeks.org/flutter/flutter-what-is-future-and-how-to-use-it/
     DroughtStatuses.getDroughtStatuses().then((result) {
       setState(() {
-        JSONLoader.convertToJson(result);
         droughtStatuses = result;
         Map<String, Color?> tempColours = {};
         droughtStatuses.forEach((countyId, droughtStatus) => tempColours[countyId] = droughtStatus.getColour());
@@ -78,50 +79,104 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Stack(
-        children: <Widget>[
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: InteractiveViewer(
-              maxScale: 75,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.92,
-                    child: SimpleMap(
-                      instructions: SMapUnitedKingdom.instructions,
-                      countryBorder: CountryBorder(color: Colors.white),
-                      colors: colours,
-                      callback: (id, name, tapDetails) {
-                        final droughtStatus = droughtStatuses[id];
-                        if (id != "" && droughtStatus != null) {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DroughtStatusWidget(droughtStatus: droughtStatus);
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: MouseRegion(
+                cursor: cursor,
+                child: SizedBox(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  child: InteractiveViewer(
+                    maxScale: 75,
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.92,
+                          child: SimpleMap(
+                            instructions: SMapUnitedKingdom.instructions,
+                            countryBorder: CountryBorder(color: Colors.white),
+                            colors: colours,
+                            callback: (id, name, tapDetails) {
+                              final droughtStatus = droughtStatuses[id];
+                              if (id != "" && droughtStatus != null) {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return DroughtStatusWidget(
+                                        droughtStatus: droughtStatus);
+                                  },
+                                );
+                              }
                             },
-                          );
-                        }
-                      },
+                            onHover: (id, name, isHovering) {
+                              if (isHovering) {
+                                cursor = SystemMouseCursors.click;
+                              } else {
+                                cursor = SystemMouseCursors.basic;
+                              }
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Data is sourced from the ',
+                      style: TextStyle(color: Colors.black87),
+                    ),
+                    TextSpan(
+                      text: 'Environment Agency',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () =>
+                            launchUrlString(
+                                'https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england'),
+                    ),
+                    TextSpan(
+                      text: ' under ',
+                      style: TextStyle(color: Colors.black87),
+                    ),
+                    TextSpan(
+                      text: 'Open Government Licence (OGL)',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () =>
+                            launchUrlString(
+                                'https://www.gov.uk/help/terms-conditions'),
+                    ),
+                    TextSpan(
+                      text: '.',
+                      style: TextStyle(color: Colors.black87),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
