@@ -66,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    // todo Better use Futures to update UI? https://www.geeksforgeeks.org/flutter/flutter-what-is-future-and-how-to-use-it/
     DroughtStatuses.getDroughtStatuses().then((result) {
       setState(() {
         droughtStatuses = result;
