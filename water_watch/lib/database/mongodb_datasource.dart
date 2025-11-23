@@ -83,4 +83,10 @@ class MongoDB {
     return await DbCollection(db!, droughtCollection)
         .aggregateToStream(pipeline).toList();
   }
+
+  static Future<void> updateDroughtDataAddDataSource() async {
+    // TODO - SET LINKS
+    droughtDbCollection?.updateMany(null, modify.set('data_source', 31));
+    droughtDbCollection?.updateMany(null, modify.set('data_source_url', 31));
+  }
 }
