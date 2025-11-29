@@ -1,7 +1,5 @@
 import 'package:countries_world_map/countries_world_map.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'package:water_watch/model/drought.dart';
 
 import 'database/drought_statuses.dart' show DroughtStatuses;
@@ -127,50 +125,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Data is sourced from the ',
-                      style: TextStyle(color: Colors.black87),
-                    ),
-                    TextSpan(
-                      text: 'Environment Agency',
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () =>
-                            launchUrlString(
-                                'https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england'),
-                    ),
-                    TextSpan(
-                      text: ' under ',
-                      style: TextStyle(color: Colors.black87),
-                    ),
-                    TextSpan(
-                      text: 'Open Government Licence (OGL)',
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () =>
-                            launchUrlString(
-                                'https://www.gov.uk/help/terms-conditions'),
-                    ),
-                    TextSpan(
-                      text: '.',
-                      style: TextStyle(color: Colors.black87),
-                    )
-                  ],
                 ),
               ),
             ),

@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../model/drought.dart';
 import '../model/drought_status_description.dart';
@@ -34,9 +36,37 @@ class DroughtStatusWidget extends StatelessWidget {
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         SizedBox(height: 16),
-        // TODO - Add an extra small text linking to the data source
       ]);
     }
+
+    statusWidgets.addAll([
+      RichText(
+        textAlign: TextAlign.start,
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(
+              text: 'Data is sourced from the ',
+              style: TextStyle(color: Colors.black87),
+            ),
+            TextSpan(
+              text: droughtStatus.dataSource,
+              style: const TextStyle(
+                color: Colors.blue,
+                decoration: TextDecoration.underline,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () =>
+                    launchUrlString(droughtStatus.dataSourceUrl),
+            ),
+            TextSpan(
+              text: '.',
+              style: TextStyle(color: Colors.black87),
+            )
+          ],
+        ),
+      ),
+      SizedBox(height: 8),
+    ]);
 
     return Dialog(
       child: SingleChildScrollView(

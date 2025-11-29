@@ -83,4 +83,10 @@ class MongoDB {
     return await DbCollection(db!, droughtCollection)
         .aggregateToStream(pipeline).toList();
   }
+
+  @Deprecated('Not currently in use, used for batch updates of all records')
+  static Future<void> updateDroughtDataAddDataSource() async {
+    droughtDbCollection?.updateMany(null, modify.set('data_source', 'Environment Agency'));
+    droughtDbCollection?.updateMany(null, modify.set('data_source_url', 'https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england'));
+  }
 }
