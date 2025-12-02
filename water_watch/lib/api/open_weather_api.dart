@@ -18,7 +18,7 @@ class OpenWeatherAPI {
   }
 
   static String appendLatLon(final String requestUrl, final (double, double) coordinates) {
-    return "$requestUrl&lat=${coordinates.$1}&lon=${coordinates.$2}";
+    return "$requestUrl?lat=${coordinates.$1}&lon=${coordinates.$2}";
   }
 
   static Future<String> appendApiKey(final String requestUrl) async {
