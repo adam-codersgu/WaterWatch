@@ -39,34 +39,36 @@ class DroughtStatusWidget extends StatelessWidget {
       ]);
     }
 
-    statusWidgets.addAll([
-      RichText(
-        textAlign: TextAlign.start,
-        text: TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-              text: 'Data is sourced from the ',
-              style: TextStyle(color: Colors.black87),
-            ),
-            TextSpan(
-              text: droughtStatus.dataSource,
-              style: const TextStyle(
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
+    if (droughtStatus.dataSource.isNotEmpty && droughtStatus.dataSourceUrl.isNotEmpty) {
+      statusWidgets.addAll([
+        RichText(
+          textAlign: TextAlign.start,
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: 'Data is sourced from the ',
+                style: TextStyle(color: Colors.black87),
               ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () =>
-                    launchUrlString(droughtStatus.dataSourceUrl),
-            ),
-            TextSpan(
-              text: '.',
-              style: TextStyle(color: Colors.black87),
-            )
-          ],
+              TextSpan(
+                text: droughtStatus.dataSource,
+                style: const TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () =>
+                      launchUrlString(droughtStatus.dataSourceUrl),
+              ),
+              TextSpan(
+                text: '.',
+                style: TextStyle(color: Colors.black87),
+              )
+            ],
+          ),
         ),
-      ),
-      SizedBox(height: 8),
-    ]);
+        SizedBox(height: 8),
+      ]);
+    }
 
     return Dialog(
       child: SingleChildScrollView(
