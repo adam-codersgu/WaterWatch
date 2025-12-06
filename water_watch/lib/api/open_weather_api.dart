@@ -1,6 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:water_watch/constants/city_coordinates.dart';
 
 /*
 DOCUMENTATION
@@ -9,10 +8,8 @@ DOCUMENTATION
 class OpenWeatherAPI {
   static const String FIVE_DAY_FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast";
 
-  // TODO RESUME - CALL API FOR BRIGHTON/LONDON
-
-  static Future<http.Response> getBrightonWeather() async {
-    String requestUrl = appendLatLon(FIVE_DAY_FORECAST_URL, brightonLatLon);
+  static Future<http.Response> getWeather((double, double) latLonCoordinates) async {
+    String requestUrl = appendLatLon(FIVE_DAY_FORECAST_URL, latLonCoordinates);
     requestUrl = await appendApiKey(requestUrl);
     return http.get(Uri.parse(requestUrl));
   }

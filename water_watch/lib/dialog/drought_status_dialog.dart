@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:water_watch/dialog/rain_status_dialog.dart';
 
 import '../model/drought.dart';
 import '../model/drought_status_description.dart';
@@ -16,7 +17,7 @@ class DroughtStatusWidget extends StatelessWidget {
   const DroughtStatusWidget({super.key, required this.droughtStatus});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final List<Widget> statusWidgets = [];
     for (var status in droughtStatus.statuses) {
       final String summary;
@@ -27,9 +28,19 @@ class DroughtStatusWidget extends StatelessWidget {
       }
 
       statusWidgets.addAll([
-        Text(
-          status.name,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return RainAmountWidget(droughtStatus: status);
+              },
+            );
+          },
+          child: Text(
+            status.name,
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+          ),
         ),
         Text(
           summary,
