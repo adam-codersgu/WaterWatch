@@ -46,15 +46,17 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
       latLonCoordinates.add(latLon);
     });
 
-    // TODO - RESUME - NEED TO TEST THIS
     double accumulatedRain = 0.00;
-    for (var latLon in latLonCoordinates) {
+    for (final (index, latLon) in latLonCoordinates.indexed) {
       OpenWeatherAPI.getWeather(latLon).then((result) {
         if (result.statusCode == 200) {
           final res = result.body;
           final json = jsonDecode(res) as Map<String, dynamic>;
           final FiveDayForecast forecast = FiveDayForecast.fromJson(json);
           accumulatedRain += forecast.accumulatedRain;
+          setState(() {
+            rainAmount = accumulatedRain / (index + 1);
+          });
         } else {
           log(
             'Unsuccessful response status ${result.statusCode} received for '
@@ -64,11 +66,6 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
         }
       });
     }
-
-    // FIXME - NOTE IF UPDATING rainAmount DOES NOT UPDATE STATE, MAY NEED TO UPDATE THE WHOLE TEXT STRING?
-    setState(() {
-      rainAmount = accumulatedRain / latLonCoordinates.length;
-    });
   }
 
   @override
@@ -79,7 +76,7 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
         style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
       ),
       Text(
-        "The total forecast rain over the next five days is $rainAmount",
+        "The total forecast rain over the next five days is $rainAmount mm.",
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       ),
       SizedBox(height: 16),

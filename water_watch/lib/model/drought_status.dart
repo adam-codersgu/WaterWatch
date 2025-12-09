@@ -37,6 +37,8 @@ class DroughtStatus {
       );
     } catch (e) {
       log('Exception caught when extracting coordinates ${e.toString()}');
+    } finally {
+      status.coordinates = jCoordinates;
     }
 
     return status;
