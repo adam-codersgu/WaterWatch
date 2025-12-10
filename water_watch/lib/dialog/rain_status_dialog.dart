@@ -53,8 +53,7 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
           final res = result.body;
           final json = jsonDecode(res) as Map<String, dynamic>;
           final FiveDayForecast forecast = FiveDayForecast.fromJson(json);
-          // TODO - ADD PLACE NAME TO FIVE DAY FORECAST AND LOG IN BELOW MESSAGE
-          log('Adding ${forecast.accumulatedRain} mm rain for latlon $latLon');
+          log('Adding ${forecast.accumulatedRain} mm rain for ${forecast.cityName} $latLon');
           accumulatedRain += forecast.accumulatedRain;
           setState(() {
             rainAmount = double.parse((accumulatedRain / latLonCoordinates.length).toStringAsFixed(2));

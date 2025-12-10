@@ -1,8 +1,9 @@
 class FiveDayForecast {
 
   final double accumulatedRain;
+  final String cityName;
 
-  const FiveDayForecast({required this.accumulatedRain});
+  const FiveDayForecast({required this.accumulatedRain, required this.cityName});
 
   factory FiveDayForecast.fromJson(final Map<String, dynamic> json) {
     double rainTotal = 0.00;
@@ -15,6 +16,8 @@ class FiveDayForecast {
       rainTotal += (rain as Map<String, dynamic>)["3h"];
     }
 
-    return FiveDayForecast(accumulatedRain: rainTotal);
+    final String city = json["city"]["name"];
+
+    return FiveDayForecast(accumulatedRain: rainTotal, cityName: city);
   }
 }
