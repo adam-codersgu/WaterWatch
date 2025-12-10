@@ -11,7 +11,6 @@ DOCUMENTATION
  - https://medium.com/@hemantkumarceo001/day-22-creating-custom-dialogs-in-flutter-a-step-by-step-guide-for-our-noted-app-beb33203ce57
  */
 class DroughtStatusWidget extends StatelessWidget {
-
   final Drought droughtStatus;
 
   const DroughtStatusWidget({super.key, required this.droughtStatus});
@@ -28,18 +27,21 @@ class DroughtStatusWidget extends StatelessWidget {
       }
 
       statusWidgets.addAll([
-        GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return RainAmountWidget(droughtStatus: status);
-              },
-            );
-          },
-          child: Text(
-            status.name,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return RainAmountWidget(droughtStatus: status);
+                },
+              );
+            },
+            child: Text(
+              status.name,
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+            ),
           ),
         ),
         Text(
@@ -50,14 +52,20 @@ class DroughtStatusWidget extends StatelessWidget {
       ]);
     }
 
-    if (droughtStatus.dataSource.isNotEmpty && droughtStatus.dataSourceUrl.isNotEmpty) {
+    if (droughtStatus.dataSource.isNotEmpty &&
+        droughtStatus.dataSourceUrl.isNotEmpty) {
+      String messagePrefix = "Data is sourced from ";
+      if (droughtStatus.dataSource.contains("Agency")) {
+        messagePrefix += "the ";
+      }
+
       statusWidgets.addAll([
         RichText(
           textAlign: TextAlign.start,
           text: TextSpan(
             children: <TextSpan>[
               TextSpan(
-                text: 'Data is sourced from the ',
+                text: messagePrefix,
                 style: TextStyle(color: Colors.black87),
               ),
               TextSpan(
@@ -67,13 +75,12 @@ class DroughtStatusWidget extends StatelessWidget {
                   decoration: TextDecoration.underline,
                 ),
                 recognizer: TapGestureRecognizer()
-                  ..onTap = () =>
-                      launchUrlString(droughtStatus.dataSourceUrl),
+                  ..onTap = () => launchUrlString(droughtStatus.dataSourceUrl),
               ),
               TextSpan(
                 text: '.',
                 style: TextStyle(color: Colors.black87),
-              )
+              ),
             ],
           ),
         ),
@@ -100,7 +107,7 @@ class DroughtStatusWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: statusWidgets
+            children: statusWidgets,
           ),
         ),
       ),
