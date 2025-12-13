@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:water_watch/dialog/rain_status_dialog.dart';
 
 import '../model/drought.dart';
 import '../model/drought_status_description.dart';
@@ -10,13 +11,12 @@ DOCUMENTATION
  - https://medium.com/@hemantkumarceo001/day-22-creating-custom-dialogs-in-flutter-a-step-by-step-guide-for-our-noted-app-beb33203ce57
  */
 class DroughtStatusWidget extends StatelessWidget {
-
   final Drought droughtStatus;
 
   const DroughtStatusWidget({super.key, required this.droughtStatus});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final List<Widget> statusWidgets = [];
     for (var status in droughtStatus.statuses) {
       final String summary;
@@ -27,9 +27,22 @@ class DroughtStatusWidget extends StatelessWidget {
       }
 
       statusWidgets.addAll([
-        Text(
-          status.name,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return RainAmountWidget(droughtStatus: status);
+                },
+              );
+            },
+            child: Text(
+              status.name,
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+            ),
+          ),
         ),
         Text(
           summary,
@@ -39,34 +52,41 @@ class DroughtStatusWidget extends StatelessWidget {
       ]);
     }
 
-    statusWidgets.addAll([
-      RichText(
-        textAlign: TextAlign.start,
-        text: TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-              text: 'Data is sourced from the ',
-              style: TextStyle(color: Colors.black87),
-            ),
-            TextSpan(
-              text: droughtStatus.dataSource,
-              style: const TextStyle(
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
+    if (droughtStatus.dataSource.isNotEmpty &&
+        droughtStatus.dataSourceUrl.isNotEmpty) {
+      String messagePrefix = "Data is sourced from ";
+      if (droughtStatus.dataSource.contains("Agency")) {
+        messagePrefix += "the ";
+      }
+
+      statusWidgets.addAll([
+        RichText(
+          textAlign: TextAlign.start,
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: messagePrefix,
+                style: TextStyle(color: Colors.black87),
               ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () =>
-                    launchUrlString(droughtStatus.dataSourceUrl),
-            ),
-            TextSpan(
-              text: '.',
-              style: TextStyle(color: Colors.black87),
-            )
-          ],
+              TextSpan(
+                text: droughtStatus.dataSource,
+                style: const TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => launchUrlString(droughtStatus.dataSourceUrl),
+              ),
+              TextSpan(
+                text: '.',
+                style: TextStyle(color: Colors.black87),
+              ),
+            ],
+          ),
         ),
-      ),
-      SizedBox(height: 8),
-    ]);
+        SizedBox(height: 8),
+      ]);
+    }
 
     return Dialog(
       child: SingleChildScrollView(
@@ -87,7 +107,7 @@ class DroughtStatusWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: statusWidgets
+            children: statusWidgets,
           ),
         ),
       ),
