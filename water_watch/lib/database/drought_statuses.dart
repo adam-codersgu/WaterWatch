@@ -7,13 +7,9 @@ import 'file_datasource.dart';
 import 'mongodb_datasource.dart';
 
 /*
-- https://beta.sepa.scot/water-scarcity/previous-reports/18-september-2025/
 - https://naturalengland-defra.opendata.arcgis.com/datasets/Defra::administrative-boundaries-environment-agency-and-natural-england-public-face-areas/explore?location=51.889776%2C-3.165840%2C6.57
 - https://api-portal.naturalresources.wales/apis
-- https://naturalresources.wales/about-us/news-and-blogs/blogs/dry-weather-updates-2025/?lang=en
 - https://www.infrastructure-ni.gov.uk/articles/dfi-rivers-water-level-network
-- https://water.gg/extra-pages/water-storage/
-- https://www.manxutilities.im/sustainability/latest-reservoir-levels/
 - https://www.irishpost.com/news/drought-status-declared-in-nearly-a-third-of-all-irish-counties-293954
  */
 class DroughtStatuses {

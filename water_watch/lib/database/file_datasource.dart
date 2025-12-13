@@ -7,7 +7,7 @@ import '../model/drought.dart';
 
 class JSONLoader {
 
-  static const String dbFile = "resources/data/data_backup_2025_10_10.json";
+  static const String dbFile = "resources/data/data_current.json";
 
   static Future<Map<String, Drought>> getDroughtStatuses() async {
     final String fileText = await rootBundle.loadString(dbFile);

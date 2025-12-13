@@ -40,15 +40,13 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'WaterWatch'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -58,12 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Map<String, Color?> colours = {};
   Map<String, Drought> droughtStatuses = {};
+  MouseCursor cursor = SystemMouseCursors.basic;
 
   @override
   void initState() {
     super.initState();
 
-    // todo Better use Futures to update UI? https://www.geeksforgeeks.org/flutter/flutter-what-is-future-and-how-to-use-it/
     DroughtStatuses.getDroughtStatuses().then((result) {
       setState(() {
         droughtStatuses = result;
@@ -76,50 +74,60 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Stack(
-        children: <Widget>[
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: InteractiveViewer(
-              maxScale: 75,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.92,
-                    child: SimpleMap(
-                      instructions: SMapUnitedKingdom.instructions,
-                      countryBorder: CountryBorder(color: Colors.white),
-                      colors: colours,
-                      callback: (id, name, tapDetails) {
-                        final droughtStatus = droughtStatuses[id];
-                        if (id != "" && droughtStatus != null) {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DroughtStatusWidget(droughtStatus: droughtStatus);
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: MouseRegion(
+                cursor: cursor,
+                child: SizedBox(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  child: InteractiveViewer(
+                    maxScale: 75,
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.92,
+                          child: SimpleMap(
+                            instructions: SMapUnitedKingdom.instructions,
+                            countryBorder: CountryBorder(color: Colors.white),
+                            colors: colours,
+                            callback: (id, name, tapDetails) {
+                              final droughtStatus = droughtStatuses[id];
+                              if (id != "" && droughtStatus != null) {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return DroughtStatusWidget(
+                                        droughtStatus: droughtStatus);
+                                  },
+                                );
+                              }
                             },
-                          );
-                        }
-                      },
+                            onHover: (id, name, isHovering) {
+                              if (isHovering) {
+                                cursor = SystemMouseCursors.click;
+                              } else {
+                                cursor = SystemMouseCursors.basic;
+                              }
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

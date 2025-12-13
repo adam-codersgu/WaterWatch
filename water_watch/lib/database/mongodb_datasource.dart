@@ -50,14 +50,14 @@ class MongoDB {
 
   static Future<List<Map<String, dynamic>>> getData(final DbCollection? dbCollection) async {
     final arrData = await dbCollection!.find().toList();
-    log('Data in collection ${dbCollection.collectionName}: ${arrData.toString()}');
+    log('Fetched data from collection ${dbCollection.collectionName}}');
     return arrData;
   }
 
   static Future<List<Map<String, dynamic>>> getDataByIds(final DbCollection? dbCollection,
       final List<ObjectId> ids) async {
     final arrData = await dbCollection!.find(where.oneFrom("_id", ids)).toList();
-    log('Data in collection ${dbCollection.collectionName}: ${arrData.toString()}');
+    log('Fetched data from collection ${dbCollection.collectionName}}');
     return arrData;
   }
 
@@ -82,5 +82,11 @@ class MongoDB {
         ).build();
     return await DbCollection(db!, droughtCollection)
         .aggregateToStream(pipeline).toList();
+  }
+
+  @Deprecated('Not currently in use, used for batch updates of all records')
+  static Future<void> updateDroughtDataAddDataSource() async {
+    droughtDbCollection?.updateMany(null, modify.set('data_source', 'Environment Agency'));
+    droughtDbCollection?.updateMany(null, modify.set('data_source_url', 'https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england'));
   }
 }
