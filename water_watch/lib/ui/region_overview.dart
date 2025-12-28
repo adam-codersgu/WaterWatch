@@ -7,20 +7,32 @@ import '../api/open_weather_api.dart';
 import '../model/drought_status.dart';
 import '../model/five_day_forecast.dart';
 
-/*
-TODO - DELETE THIS PAGE
- */
-@Deprecated("Replaced by region_overview.dart")
-class RainAmountWidget extends StatefulWidget {
-  const RainAmountWidget({super.key, required this.droughtStatus});
+class RegionOverviewScreen extends StatelessWidget {
+
+  final DroughtStatus droughtStatus;
+
+  const RegionOverviewScreen({super.key, required this.droughtStatus});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Second Screen')),
+      body: RegionOverviewPage(droughtStatus: droughtStatus),
+    );
+  }
+}
+
+class RegionOverviewPage extends StatefulWidget {
+
+  const RegionOverviewPage({super.key, required this.droughtStatus});
 
   final DroughtStatus droughtStatus;
 
   @override
-  State<RainAmountWidget> createState() => _RainAmountWidgetState();
+  State<RegionOverviewPage> createState() => _RegionOverviewPageState();
 }
 
-class _RainAmountWidgetState extends State<RainAmountWidget> {
+class _RegionOverviewPageState extends State<RegionOverviewPage> {
   static const String _coordinatesDelimiter = ",";
   double rainAmount = 0.00;
 
@@ -36,13 +48,13 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
       if (coordinatesStringList.length != 2) {
         log(
           'Error: The coordinates list contains ${coordinatesStringList.length} elements. '
-          'Expected 2.',
+              'Expected 2.',
         );
         return;
       }
       final (double, double) latLon = (
-        double.parse(coordinatesStringList[0]),
-        double.parse(coordinatesStringList[1]),
+      double.parse(coordinatesStringList[0]),
+      double.parse(coordinatesStringList[1]),
       );
       latLonCoordinates.add(latLon);
     });
@@ -62,7 +74,7 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
         } else {
           log(
             'Unsuccessful response status ${result.statusCode} received for '
-            'LatLon $latLon',
+                'LatLon $latLon',
           );
           return;
         }
@@ -84,8 +96,8 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
       SizedBox(height: 16),
     ];
 
-    return Dialog(
-      child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
