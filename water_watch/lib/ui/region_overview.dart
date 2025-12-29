@@ -98,20 +98,8 @@ class _RegionOverviewPageState extends State<RegionOverviewPage> {
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black,
-                offset: Offset(6, 6),
-                spreadRadius: 2,
-                blurStyle: BlurStyle.solid,
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(12.0),
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
