@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:water_watch/ui/painter/ukj_south_east_painter.dart';
 
 import '../api/open_weather_api.dart';
 import '../model/drought_status.dart';
@@ -84,7 +85,15 @@ class _RegionOverviewPageState extends State<RegionOverviewPage> {
 
   @override
   Widget build(final BuildContext context) {
+    // TODO - WORK ON ADDING AN IMAGE OF THE REGION?
     final List<Widget> statusWidgets = [
+      CustomPaint(
+          painter: SouthEastPainter(),
+          child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 300
+          )
+      ),
       Text(
         widget.droughtStatus.name,
         style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
