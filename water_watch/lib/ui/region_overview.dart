@@ -90,12 +90,11 @@ class _RegionOverviewPageState extends State<RegionOverviewPage> {
 
   @override
   Widget build(final BuildContext context) {
-    // TODO -
     final List<Widget> statusWidgets = [
       SizedBox(
           height: 300,
-          child: SvgPicture.asset('resources/images/ukj-south-east.svg',
-              semanticsLabel: 'Dart Logo')
+          child: SvgPicture.asset(getSvgAssetByDroughtStatusShortCode(widget.droughtStatus.shortCode),
+              semanticsLabel: 'Region image')
       ),
       Text(
         widget.droughtStatus.name,
@@ -121,4 +120,11 @@ class _RegionOverviewPageState extends State<RegionOverviewPage> {
       ),
     );
   }
+}
+
+String getSvgAssetByDroughtStatusShortCode(final String shortCode) {
+  return switch (shortCode) {
+    'ssd' => 'resources/images/ukj-south-east.svg',
+    _ => '' // FIXME - MAKE IT SO THIS CAN RETURN NULL
+  };
 }
