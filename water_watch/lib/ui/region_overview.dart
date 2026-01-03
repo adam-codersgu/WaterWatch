@@ -2,12 +2,17 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:water_watch/ui/painter/ukj_south_east_painter.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../api/open_weather_api.dart';
 import '../model/drought_status.dart';
 import '../model/five_day_forecast.dart';
 
+
+/*
+ * DOCUMENTATION
+ *  - http://pub.dev/packages/flutter_svg
+ */
 class RegionOverviewScreen extends StatelessWidget {
 
   final DroughtStatus droughtStatus;
@@ -85,14 +90,12 @@ class _RegionOverviewPageState extends State<RegionOverviewPage> {
 
   @override
   Widget build(final BuildContext context) {
-    // TODO - WORK ON ADDING AN IMAGE OF THE REGION?
+    // TODO -
     final List<Widget> statusWidgets = [
-      CustomPaint(
-          painter: SouthEastPainter(),
-          child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 300
-          )
+      SizedBox(
+          height: 300,
+          child: SvgPicture.asset('resources/images/ukj-south-east.svg',
+              semanticsLabel: 'Dart Logo')
       ),
       Text(
         widget.droughtStatus.name,
