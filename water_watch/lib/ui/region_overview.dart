@@ -124,6 +124,10 @@ class _RegionOverviewPageState extends State<RegionOverviewPage> {
 
 String getSvgAssetByDroughtStatusShortCode(final String shortCode) {
   return switch (shortCode) {
+    'gg' => 'resources/images/gg-guernsey.svg',
+    'ie' => 'resources/images/ie-ireland.svg',
+    'im' => 'resources/images/im-isle-of-man.svg',
+    'je' => 'resources/images/je-jersey.svg',
     'yor' => 'resources/images/uke-yorkshire-and-humber.svg',
     'ksl' || 'ssd' || 'thm' => 'resources/images/ukj-south-east.svg',
     _ => '' // FIXME - MAKE IT SO THIS CAN RETURN NULL
