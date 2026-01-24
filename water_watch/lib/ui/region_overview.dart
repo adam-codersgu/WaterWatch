@@ -125,6 +125,7 @@ class _RegionOverviewPageState extends State<RegionOverviewPage> {
 String getSvgAssetByDroughtStatusShortCode(final String shortCode) {
   return switch (shortCode) {
     'cla' || 'gmc' => 'resources/images/ukd-north-west.svg',
+    'dcs' || 'wsx' => 'resources/images/ukk-south-west.svg',
     'ean' => 'resources/images/ukh-east.svg',
     'emd' || 'lna' => 'resources/images/ukf-east-midlands.svg',
     'gg' => 'resources/images/gg-guernsey.svg',
@@ -134,6 +135,9 @@ String getSvgAssetByDroughtStatusShortCode(final String shortCode) {
     'je' => 'resources/images/je-jersey.svg',
     'ksl' || 'ssd' || 'thm' => 'resources/images/ukj-south-east.svg',
     'nea' => 'resources/images/ukc-north-east.svg',
+    'ni' => 'resources/images/ukn-northern-ireland.svg',
+    'scotland' => 'resources/images/ukm-scotland.svg',
+    'wales' => 'resources/images/ukl-wales.svg',
     'wmd' => 'resources/images/ukg-west-midlands.svg',
     'yor' => 'resources/images/uke-yorkshire-and-humber.svg',
     _ => '' // FIXME - MAKE IT SO THIS CAN RETURN NULL
