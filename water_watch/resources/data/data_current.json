@@ -1,1 +1,385 @@
-{"GB-UKC":{"area_id":"GB-UKC","name":"North East","statuses":[{"short_code":"nea","status":{"_id":"prolongedDryWeather","value":"experiencing prolonged dry weather"},"name":"North East","detailed_status":null,"coordinates":["54.9456,1.9480"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKE":{"area_id":"GB-UKE","name":"Yorkshire and the Humber","statuses":[{"short_code":"yor","status":{"_id":"drought","value":"in drought"},"name":"Yorkshire","detailed_status":null,"coordinates":["53.9591,1.0792"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKF":{"area_id":"GB-UKF","name":"East Midlands","statuses":[{"short_code":"emd","status":{"_id":"drought","value":"in drought"},"name":"East Midlands","detailed_status":null,"coordinates":["52.9540,1.1551"]},{"short_code":"lna","status":{"_id":"prolongedDryWeather","value":"experiencing prolonged dry weather"},"name":"Lincolnshire and Northamptonshire","detailed_status":null,"coordinates":["52.2730,0.8756"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKG":{"area_id":"GB-UKG","name":"West Midlands","statuses":[{"short_code":"wmd","status":{"_id":"drought","value":"in drought"},"name":"West Midlands","detailed_status":null,"coordinates":["52.4751,1.8298"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKH":{"area_id":"GB-UKH","name":"East of England","statuses":[{"short_code":"ean","status":{"_id":"prolongedDryWeather","value":"experiencing prolonged dry weather"},"name":"East Anglia","detailed_status":null,"coordinates":["52.1898,0.5803"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKI":{"area_id":"GB-UKI","name":"Greater London","statuses":[{"short_code":"hnl","status":{"_id":"normal","value":"in normal conditions"},"name":"Hertfordshire and North London","detailed_status":null,"coordinates":["51.5072,0.1276"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKK":{"area_id":"GB-UKK","name":"South West","statuses":[{"short_code":"dcs","status":{"_id":"normal","value":"in normal conditions"},"name":"Devon, Cornwall and the Isles of Scilly","detailed_status":null,"coordinates":["50.5036,4.6525","49.973,6.325"]},{"short_code":"wsx","status":{"_id":"prolongedDryWeather","value":"experiencing prolonged dry weather"},"name":"Wessex","detailed_status":null,"coordinates":["51.0635,2.7547"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKN":{"area_id":"GB-UKN","name":"Northern Ireland","statuses":[{"short_code":"ni","status":{"_id":"normal","value":"in normal conditions"},"name":"Northern Ireland","detailed_status":null,"coordinates":["54.7877,6.4923"]}],"data_source":"Northern Ireland Water","data_source_url":"https://www.niwater.com/"},"GG-GG":{"area_id":"GG-GG","name":"Guernsey","statuses":[{"short_code":"gg","status":{"_id":"normal","value":"in normal conditions"},"name":"Guernsey","detailed_status":null,"coordinates":["49.4482,2.5895"]}],"data_source":"Guernsey Water","data_source_url":"https://water.gg/extra-pages/water-storage/"},"JE-JE":{"area_id":"JE-JE","name":"Jersey","statuses":[{"short_code":"je","status":{"_id":"normal","value":"in normal conditions"},"name":"Jersey","detailed_status":null,"coordinates":["49.2138,2.1358"]}],"data_source":"Jersey Water","data_source_url":"https://www.jerseywater.je/about-us/operational-data/"},"IM-IM":{"area_id":"IM-IM","name":"Isle of Man","statuses":[{"short_code":"im","status":{"_id":"normal","value":"in normal conditions"},"name":"Isle of Man","detailed_status":null,"coordinates":["54.2361,4.5481"]}],"data_source":"Manx Utilities","data_source_url":"https://www.manxutilities.im/sustainability/latest-reservoir-levels/"},"IE-IE":{"area_id":"IE-IE","name":"Republic of Ireland","statuses":[{"short_code":"ie","status":{"_id":"drought","value":"in drought"},"name":"Republic of Ireland","detailed_status":"Nearly a third of counties are in drought status, including Donegal, Dublin, Cork, Limerick, \nGalway, Meath, Tipperary, Waterford, Clare, Wexford, and Westmeath.","coordinates":["53.4129,8.2439"]}],"data_source":"Uisce Éireann","data_source_url":"https://www.water.ie/"},"GB-UKJ":{"area_id":"GB-UKJ","name":"South East","statuses":[{"short_code":"ksl","status":{"_id":"drought","value":"in drought"},"name":"Kent and South London","detailed_status":"The area of the region supplied by South East Water is in drought. The remainder of the region is in normal conditions.","coordinates":["51.3889,0.1403"]},{"short_code":"ssd","status":{"_id":"drought","value":"in drought"},"name":"Solent and South Downs","detailed_status":"The area of the region supplied by South East Water is in drought. The remainder of the region is experiencing prolonged dry weather.","coordinates":["50.8229,0.1363"]},{"short_code":"thm","status":{"_id":"prolongedDryWeather","value":"experiencing prolonged dry weather"},"name":"Thames","detailed_status":null,"coordinates":["51.4989,0.6087"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKD":{"area_id":"GB-UKD","name":"North West","statuses":[{"short_code":"cla","status":{"_id":"recovery","value":"in recovery from drought"},"name":"Cumbria & Lancashire","detailed_status":null,"coordinates":["53.9690,2.6277"]},{"short_code":"gmc","status":{"_id":"recovery","value":"in recovery from drought"},"name":"Greater Manchester, Merseyside & Cheshire","detailed_status":null,"coordinates":["53.48,2.25","53.25,3.00","53.17,2.58"]}],"data_source":"Environment Agency","data_source_url":"https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"},"GB-UKL":{"area_id":"GB-UKL","name":"Wales","statuses":[{"short_code":"wales","status":{"_id":"normal","value":"in normal conditions"},"name":"Wales","detailed_status":null,"coordinates":["52.1307,3.7837"]}],"data_source":"Natural Resources Wales","data_source_url":"https://naturalresources.wales/about-us/news-and-blogs/blogs/dry-weather-updates-2025/?lang=en"},"GB-UKM":{"area_id":"GB-UKM","name":"Scotland","statuses":[{"short_code":"scotland","status":{"_id":"normal","value":"in normal conditions"},"name":"Scotland","detailed_status":null,"coordinates":["55.87,4.26","55.95,3.19"]}],"data_source":"Scottish Environment Protection Agency","data_source_url":"https://beta.sepa.scot/water-scarcity/"}}
+{
+  "GB-UKH": {
+    "area_id": "GB-UKH",
+    "name": "East of England",
+    "statuses": [
+      {
+        "short_code": "ean",
+        "status": {
+          "_id": "prolongedDryWeather",
+          "value": "experiencing prolonged dry weather"
+        },
+        "name": "East Anglia",
+        "detailed_status": null,
+        "coordinates": [
+          "52.1898,0.5803"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKI": {
+    "area_id": "GB-UKI",
+    "name": "Greater London",
+    "statuses": [
+      {
+        "short_code": "hnl",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Hertfordshire and North London",
+        "detailed_status": null,
+        "coordinates": [
+          "51.5072,0.1276"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKN": {
+    "area_id": "GB-UKN",
+    "name": "Northern Ireland",
+    "statuses": [
+      {
+        "short_code": "ni",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Northern Ireland",
+        "detailed_status": null,
+        "coordinates": [
+          "54.7877,6.4923"
+        ]
+      }
+    ],
+    "data_source": "Northern Ireland Water",
+    "data_source_url": "https://www.niwater.com/"
+  },
+  "GG-GG": {
+    "area_id": "GG-GG",
+    "name": "Guernsey",
+    "statuses": [
+      {
+        "short_code": "gg",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Guernsey",
+        "detailed_status": null,
+        "coordinates": [
+          "49.4482,2.5895"
+        ]
+      }
+    ],
+    "data_source": "Guernsey Water",
+    "data_source_url": "https://water.gg/extra-pages/water-storage/"
+  },
+  "JE-JE": {
+    "area_id": "JE-JE",
+    "name": "Jersey",
+    "statuses": [
+      {
+        "short_code": "je",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Jersey",
+        "detailed_status": null,
+        "coordinates": [
+          "49.2138,2.1358"
+        ]
+      }
+    ],
+    "data_source": "Jersey Water",
+    "data_source_url": "https://www.jerseywater.je/about-us/operational-data/"
+  },
+  "IM-IM": {
+    "area_id": "IM-IM",
+    "name": "Isle of Man",
+    "statuses": [
+      {
+        "short_code": "im",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Isle of Man",
+        "detailed_status": null,
+        "coordinates": [
+          "54.2361,4.5481"
+        ]
+      }
+    ],
+    "data_source": "Manx Utilities",
+    "data_source_url": "https://www.manxutilities.im/sustainability/latest-reservoir-levels/"
+  },
+  "IE-IE": {
+    "area_id": "IE-IE",
+    "name": "Republic of Ireland",
+    "statuses": [
+      {
+        "short_code": "ie",
+        "status": {
+          "_id": "drought",
+          "value": "in drought"
+        },
+        "name": "Republic of Ireland",
+        "detailed_status": "Nearly a third of counties are in drought status, including Donegal, Dublin, Cork, Limerick, \nGalway, Meath, Tipperary, Waterford, Clare, Wexford, and Westmeath.",
+        "coordinates": [
+          "53.3498,6.2603"
+        ]
+      }
+    ],
+    "data_source": "Uisce Éireann",
+    "data_source_url": "https://www.water.ie/"
+  },
+  "GB-UKL": {
+    "area_id": "GB-UKL",
+    "name": "Wales",
+    "statuses": [
+      {
+        "short_code": "wales",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Wales",
+        "detailed_status": null,
+        "coordinates": [
+          "52.1307,3.7837"
+        ]
+      }
+    ],
+    "data_source": "Natural Resources Wales",
+    "data_source_url": "https://naturalresources.wales/about-us/news-and-blogs/blogs/dry-weather-updates-2025/?lang=en"
+  },
+  "GB-UKM": {
+    "area_id": "GB-UKM",
+    "name": "Scotland",
+    "statuses": [
+      {
+        "short_code": "scotland",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Scotland",
+        "detailed_status": null,
+        "coordinates": [
+          "55.87,4.26",
+          "55.95,3.19"
+        ]
+      }
+    ],
+    "data_source": "Scottish Environment Protection Agency",
+    "data_source_url": "https://beta.sepa.scot/water-scarcity/"
+  },
+  "GB-UKE": {
+    "area_id": "GB-UKE",
+    "name": "Yorkshire and the Humber",
+    "statuses": [
+      {
+        "short_code": "yor",
+        "status": {
+          "_id": "recovery",
+          "value": "in recovery from drought"
+        },
+        "name": "Yorkshire",
+        "detailed_status": null,
+        "coordinates": [
+          "53.9591,1.0792"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKD": {
+    "area_id": "GB-UKD",
+    "name": "North West",
+    "statuses": [
+      {
+        "short_code": "cla",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Cumbria & Lancashire",
+        "detailed_status": null,
+        "coordinates": [
+          "53.9690,2.6277"
+        ]
+      },
+      {
+        "short_code": "gmc",
+        "status": {
+          "_id": "normal",
+          "value": "in normal conditions"
+        },
+        "name": "Greater Manchester, Merseyside & Cheshire",
+        "detailed_status": null,
+        "coordinates": [
+          "53.48,2.25",
+          "53.25,3.00",
+          "53.17,2.58"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKF": {
+    "area_id": "GB-UKF",
+    "name": "East Midlands",
+    "statuses": [
+      {
+        "short_code": "emd",
+        "status": {
+          "_id": "recovery",
+          "value": "in recovery from drought"
+        },
+        "name": "East Midlands",
+        "detailed_status": null,
+        "coordinates": [
+          "52.9540,1.1551"
+        ]
+      },
+      {
+        "short_code": "lna",
+        "status": {
+          "_id": "prolongedDryWeather",
+          "value": "experiencing prolonged dry weather"
+        },
+        "name": "Lincolnshire and Northamptonshire",
+        "detailed_status": null,
+        "coordinates": [
+          "52.2730,0.8756"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKG": {
+    "area_id": "GB-UKG",
+    "name": "West Midlands",
+    "statuses": [
+      {
+        "short_code": "wmd",
+        "status": {
+          "_id": "recovery",
+          "value": "in recovery from drought"
+        },
+        "name": "West Midlands",
+        "detailed_status": null,
+        "coordinates": [
+          "52.4751,1.8298"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKC": {
+    "area_id": "GB-UKC",
+    "name": "North East",
+    "statuses": [
+      {
+        "short_code": "nea",
+        "status": {
+          "_id": "recovery",
+          "value": "in recovery from drought"
+        },
+        "name": "North East",
+        "detailed_status": null,
+        "coordinates": [
+          "54.9456,1.9480"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKK": {
+    "area_id": "GB-UKK",
+    "name": "South West",
+    "statuses": [
+      {
+        "short_code": "wsx",
+        "status": {
+          "_id": "prolongedDryWeather",
+          "value": "experiencing prolonged dry weather"
+        },
+        "name": "Wessex",
+        "detailed_status": "Most of the region is recovering from prolonged dry weather, except for the Upper Hampshire Avon catchment, which is still experiencing prolonged dry weather.",
+        "coordinates": [
+          "51.0635,2.7547"
+        ]
+      },
+      {
+        "short_code": "wsx",
+        "status": {
+          "_id": "prolongedDryWeather",
+          "value": "experiencing prolonged dry weather"
+        },
+        "name": "Wessex",
+        "detailed_status": null,
+        "coordinates": [
+          "51.0635,2.7547"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
+  "GB-UKJ": {
+    "area_id": "GB-UKJ",
+    "name": "South East",
+    "statuses": [
+      {
+        "short_code": "ksl",
+        "status": {
+          "_id": "drought",
+          "value": "in drought"
+        },
+        "name": "Kent and South London",
+        "detailed_status": "The area of the region supplied by South East Water is in drought. The remainder of the region is in normal conditions.",
+        "coordinates": [
+          "51.3889,0.1403"
+        ]
+      },
+      {
+        "short_code": "ssd",
+        "status": {
+          "_id": "drought",
+          "value": "in drought"
+        },
+        "name": "Solent and South Downs",
+        "detailed_status": "The area of the region supplied by South East Water is in drought. The remainder of the region is experiencing prolonged dry weather.",
+        "coordinates": [
+          "50.8229,0.1363"
+        ]
+      },
+      {
+        "short_code": "thm",
+        "status": {
+          "_id": "recovery",
+          "value": "in recovery from drought"
+        },
+        "name": "Thames",
+        "detailed_status": null,
+        "coordinates": [
+          "51.4989,0.6087"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  }
+}
