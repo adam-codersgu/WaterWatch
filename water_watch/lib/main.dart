@@ -137,6 +137,31 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(color: Colors.white, width: 2),
                       ),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 5,
+                                height: 5,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                              Text("Normal"),
+                            ],
+                          ),
+                          Text("Prolonged dry weather"),
+                          Text("Drought"),
+                          Text("Recovery"),
+                        ],
+                      ),
                     ),
                   ),
                 ],
