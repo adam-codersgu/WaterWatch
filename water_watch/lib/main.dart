@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     left: 16,
                     child: Container(
                       width: 100,
-                      height: 100,
+                      height: 300,
                       decoration: BoxDecoration(
                         color: Colors.blue.withValues(alpha: 0.7),
                         borderRadius: BorderRadius.circular(8),
@@ -140,20 +140,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children: <Widget>[
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              SizedBox(width: 4),
                               Container(
-                                width: 5,
-                                height: 5,
+                                width: 10,
+                                height: 10,
                                 decoration: BoxDecoration(
                                   color: Colors.green,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 2,
-                                  ),
+                                  borderRadius: BorderRadius.circular(1),
                                 ),
                               ),
+                              SizedBox(width: 8),
                               Text("Normal"),
                             ],
                           ),
