@@ -187,7 +187,22 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text("Drought"),
                             ],
                           ),
-                          Text("Recovery"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 4),
+                              Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: Colors.lightGreen,
+                                  borderRadius: BorderRadius.circular(1),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text("Recovery"),
+                            ],
+                          ),
                         ],
                       ),
                     ),
