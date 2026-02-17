@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     top: 16,
                     left: 16,
                     child: Container(
-                      width: 100,
+                      width: 120,
                       height: 300,
                       decoration: BoxDecoration(
                         color: Colors.blue.withValues(alpha: 0.7),
@@ -168,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               SizedBox(width: 8),
-                              Text("Prolonged dry weather"),
+                              Text("Prolonged \ndry weather"),
                             ],
                           ),
                           Row(
