@@ -130,15 +130,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     top: 16,
                     left: 16,
                     child: Container(
-                      width: 120,
-                      height: 300,
+                      width: 110,
                       decoration: BoxDecoration(
-                        color: Colors.blue.withValues(alpha: 0.7),
+                        color: Colors.grey.withValues(alpha: 0.35),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(color: Colors.white, width: 2),
                       ),
                       child: Column(
                         children: <Widget>[
+                          SizedBox(height: 2),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -155,6 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text("Normal"),
                             ],
                           ),
+                          SizedBox(height: 4),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -171,6 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text("Prolonged \ndry weather"),
                             ],
                           ),
+                          SizedBox(height: 4),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -187,6 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text("Drought"),
                             ],
                           ),
+                          SizedBox(height: 4),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -203,6 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text("Recovery"),
                             ],
                           ),
+                          SizedBox(height: 2),
                         ],
                       ),
                     ),
