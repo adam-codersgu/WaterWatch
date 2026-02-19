@@ -147,6 +147,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                 width: 10,
                                 height: 10,
                                 decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(1),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text("Drought"),
+                            ],
+                          ),
+                          SizedBox(height: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 4),
+                              Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(1),
                                 ),
@@ -170,23 +187,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               SizedBox(width: 8),
                               Text("Prolonged \ndry weather"),
-                            ],
-                          ),
-                          SizedBox(height: 4),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(width: 4),
-                              Container(
-                                width: 10,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(1),
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              Text("Drought"),
                             ],
                           ),
                           SizedBox(height: 4),
