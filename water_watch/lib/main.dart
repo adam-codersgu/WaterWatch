@@ -53,7 +53,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Map<String, Color?> colours = {};
   Map<String, Drought> droughtStatuses = {};
   MouseCursor cursor = SystemMouseCursors.basic;
@@ -66,7 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         droughtStatuses = result;
         Map<String, Color?> tempColours = {};
-        droughtStatuses.forEach((countyId, droughtStatus) => tempColours[countyId] = droughtStatus.getColour());
+        droughtStatuses.forEach(
+          (countyId, droughtStatus) =>
+              tempColours[countyId] = droughtStatus.getColour(),
+        );
         colours = tempColours;
       });
     });
@@ -79,51 +81,137 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: MouseRegion(
-                cursor: cursor,
-                child: SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  child: InteractiveViewer(
-                    maxScale: 75,
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 0.92,
-                          child: SimpleMap(
-                            instructions: SMapUnitedKingdom.instructions,
-                            countryBorder: CountryBorder(color: Colors.white),
-                            colors: colours,
-                            callback: (id, name, tapDetails) {
-                              final droughtStatus = droughtStatuses[id];
-                              if (id != "" && droughtStatus != null) {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return DroughtStatusWidget(
-                                        droughtStatus: droughtStatus);
-                                  },
-                                );
-                              }
-                            },
-                            onHover: (id, name, isHovering) {
-                              if (isHovering) {
-                                cursor = SystemMouseCursors.click;
-                              } else {
-                                cursor = SystemMouseCursors.basic;
-                              }
-                            },
-                          ),
+              child: Stack(
+                children: <Widget>[
+                  MouseRegion(
+                    cursor: cursor,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: InteractiveViewer(
+                        maxScale: 75,
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.92,
+                              child: SimpleMap(
+                                instructions: SMapUnitedKingdom.instructions,
+                                countryBorder: CountryBorder(
+                                  color: Colors.white,
+                                ),
+                                colors: colours,
+                                callback: (id, name, tapDetails) {
+                                  final droughtStatus = droughtStatuses[id];
+                                  if (id != "" && droughtStatus != null) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return DroughtStatusWidget(
+                                          droughtStatus: droughtStatus,
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                onHover: (id, name, isHovering) {
+                                  if (isHovering) {
+                                    cursor = SystemMouseCursors.click;
+                                  } else {
+                                    cursor = SystemMouseCursors.basic;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                  Positioned(
+                    top: 16,
+                    left: 16,
+                    child: Container(
+                      width: 110,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withValues(alpha: 0.35),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 2),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 4),
+                              Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(1),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text("Drought"),
+                            ],
+                          ),
+                          SizedBox(height: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 4),
+                              Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(1),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text("Normal"),
+                            ],
+                          ),
+                          SizedBox(height: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 4),
+                              Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: Colors.orange,
+                                  borderRadius: BorderRadius.circular(1),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text("Prolonged \ndry weather"),
+                            ],
+                          ),
+                          SizedBox(height: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 4),
+                              Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: Colors.lightGreen,
+                                  borderRadius: BorderRadius.circular(1),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text("Recovery"),
+                            ],
+                          ),
+                          SizedBox(height: 2),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

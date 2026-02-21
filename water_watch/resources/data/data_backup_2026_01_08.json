@@ -253,8 +253,8 @@
       {
         "short_code": "lna",
         "status": {
-          "_id": "prolongedDryWeather",
-          "value": "experiencing prolonged dry weather"
+          "_id": "normal",
+          "value": "in normal conditions"
         },
         "name": "Lincolnshire and Northamptonshire",
         "detailed_status": null,
