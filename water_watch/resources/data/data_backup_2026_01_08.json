@@ -1,4 +1,24 @@
 {
+  "GB-UKH": {
+    "area_id": "GB-UKH",
+    "name": "East of England",
+    "statuses": [
+      {
+        "short_code": "ean",
+        "status": {
+          "_id": "prolongedDryWeather",
+          "value": "experiencing prolonged dry weather"
+        },
+        "name": "East Anglia",
+        "detailed_status": null,
+        "coordinates": [
+          "52.1898,0.5803"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
   "GB-UKI": {
     "area_id": "GB-UKI",
     "name": "Greater London",
@@ -98,6 +118,26 @@
     ],
     "data_source": "Manx Utilities",
     "data_source_url": "https://www.manxutilities.im/sustainability/latest-reservoir-levels/"
+  },
+  "IE-IE": {
+    "area_id": "IE-IE",
+    "name": "Republic of Ireland",
+    "statuses": [
+      {
+        "short_code": "ie",
+        "status": {
+          "_id": "drought",
+          "value": "in drought"
+        },
+        "name": "Republic of Ireland",
+        "detailed_status": "Nearly a third of counties are in drought status, including Donegal, Dublin, Cork, Limerick, \nGalway, Meath, Tipperary, Waterford, Clare, Wexford, and Westmeath.",
+        "coordinates": [
+          "53.3498,6.2603"
+        ]
+      }
+    ],
+    "data_source": "Uisce Éireann",
+    "data_source_url": "https://www.water.ie/"
   },
   "GB-UKL": {
     "area_id": "GB-UKL",
@@ -213,8 +253,8 @@
       {
         "short_code": "lna",
         "status": {
-          "_id": "prolongedDryWeather",
-          "value": "experiencing prolonged dry weather"
+          "_id": "normal",
+          "value": "in normal conditions"
         },
         "name": "Lincolnshire and Northamptonshire",
         "detailed_status": null,
@@ -266,6 +306,38 @@
     "data_source": "Environment Agency",
     "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
   },
+  "GB-UKK": {
+    "area_id": "GB-UKK",
+    "name": "South West",
+    "statuses": [
+      {
+        "short_code": "wsx",
+        "status": {
+          "_id": "prolongedDryWeather",
+          "value": "experiencing prolonged dry weather"
+        },
+        "name": "Wessex",
+        "detailed_status": "Most of the region is recovering from prolonged dry weather, except for the Upper Hampshire Avon catchment, which is still experiencing prolonged dry weather.",
+        "coordinates": [
+          "51.0635,2.7547"
+        ]
+      },
+      {
+        "short_code": "wsx",
+        "status": {
+          "_id": "prolongedDryWeather",
+          "value": "experiencing prolonged dry weather"
+        },
+        "name": "Wessex",
+        "detailed_status": null,
+        "coordinates": [
+          "51.0635,2.7547"
+        ]
+      }
+    ],
+    "data_source": "Environment Agency",
+    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
+  },
   "GB-UKJ": {
     "area_id": "GB-UKJ",
     "name": "South East",
@@ -273,11 +345,11 @@
       {
         "short_code": "ksl",
         "status": {
-          "_id": "recovery",
-          "value": "in recovery from drought"
+          "_id": "drought",
+          "value": "in drought"
         },
         "name": "Kent and South London",
-        "detailed_status": "The area of the region supplied by South East Water is in recovery from drought. The remainder of the region is in normal conditions.",
+        "detailed_status": "The area of the region supplied by South East Water is in drought. The remainder of the region is in normal conditions.",
         "coordinates": [
           "51.3889,0.1403"
         ]
@@ -285,11 +357,11 @@
       {
         "short_code": "ssd",
         "status": {
-          "_id": "recovery",
-          "value": "in recovery from drought"
+          "_id": "drought",
+          "value": "in drought"
         },
         "name": "Solent and South Downs",
-        "detailed_status": null,
+        "detailed_status": "The area of the region supplied by South East Water is in drought. The remainder of the region is experiencing prolonged dry weather.",
         "coordinates": [
           "50.8229,0.1363"
         ]
@@ -309,77 +381,5 @@
     ],
     "data_source": "Environment Agency",
     "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
-  },
-  "GB-UKK": {
-    "area_id": "GB-UKK",
-    "name": "South West",
-    "statuses": [
-      {
-        "short_code": "wsx",
-        "status": {
-          "_id": "recovery",
-          "value": "in recovery from drought"
-        },
-        "name": "Wessex",
-        "detailed_status": null,
-        "coordinates": [
-          "51.0635,2.7547"
-        ]
-      },
-      {
-        "short_code": "wsx",
-        "status": {
-          "_id": "prolongedDryWeather",
-          "value": "experiencing prolonged dry weather"
-        },
-        "name": "Wessex",
-        "detailed_status": null,
-        "coordinates": [
-          "51.0635,2.7547"
-        ]
-      }
-    ],
-    "data_source": "Environment Agency",
-    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
-  },
-  "GB-UKH": {
-    "area_id": "GB-UKH",
-    "name": "East of England",
-    "statuses": [
-      {
-        "short_code": "ean",
-        "status": {
-          "_id": "prolongedDryWeather",
-          "value": "experiencing prolonged dry weather"
-        },
-        "name": "East Anglia",
-        "detailed_status": "The region is experiencing prolonged dry weather, except for the following areas which are in recovery: Upper and Bedford Ouse, Old Bedford and Middle Level, North Norfolk, Broadland Rivers, East Suffolk.",
-        "coordinates": [
-          "52.1898,0.5803"
-        ]
-      }
-    ],
-    "data_source": "Environment Agency",
-    "data_source_url": "https://www.gov.uk/government/publications/weekly-rainfall-and-river-flow-reports-for-england"
-  },
-  "IE-IE": {
-    "area_id": "IE-IE",
-    "name": "Republic of Ireland",
-    "statuses": [
-      {
-        "short_code": "ie",
-        "status": {
-          "_id": "normal",
-          "value": "in normal conditions"
-        },
-        "name": "Republic of Ireland",
-        "detailed_status": null,
-        "coordinates": [
-          "53.3498,6.2603"
-        ]
-      }
-    ],
-    "data_source": "Uisce Éireann",
-    "data_source_url": "https://www.water.ie/"
   }
 }

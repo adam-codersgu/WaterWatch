@@ -20,6 +20,8 @@ class JSONLoader {
   /// Used for extracting the JSON from a MongoDB call
   /// e.g. JSONLoader.convertToJson(result);
   static void convertToJson(final Map<String, dynamic> list) {
-    log('The result is: \n${jsonEncode(list)}');
+    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+    final jsonString = encoder.convert(list);
+    log('The result is: \n$jsonString');
   }
 }

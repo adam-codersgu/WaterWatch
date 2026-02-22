@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:water_watch/dialog/rain_status_dialog.dart';
 
 import '../model/drought.dart';
 import '../model/drought_status_description.dart';
+import '../ui/region_overview.dart';
 
 /*
 DOCUMENTATION
@@ -31,11 +31,9 @@ class DroughtStatusWidget extends StatelessWidget {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return RainAmountWidget(droughtStatus: status);
-                },
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegionOverviewScreen(droughtStatus: status,)),
               );
             },
             child: Text(

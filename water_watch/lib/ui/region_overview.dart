@@ -2,24 +2,43 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../api/open_weather_api.dart';
 import '../model/drought_status.dart';
 import '../model/five_day_forecast.dart';
 
+
 /*
-TODO - ULTIMATELY REPLACE THIS WIDGET WITH A DEDICATED PAGE WITH DATA ON IT
+ * DOCUMENTATION
+ *  - http://pub.dev/packages/flutter_svg
  */
-class RainAmountWidget extends StatefulWidget {
-  const RainAmountWidget({super.key, required this.droughtStatus});
+class RegionOverviewScreen extends StatelessWidget {
+
+  final DroughtStatus droughtStatus;
+
+  const RegionOverviewScreen({super.key, required this.droughtStatus});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Second Screen')),
+      body: RegionOverviewPage(droughtStatus: droughtStatus),
+    );
+  }
+}
+
+class RegionOverviewPage extends StatefulWidget {
+
+  const RegionOverviewPage({super.key, required this.droughtStatus});
 
   final DroughtStatus droughtStatus;
 
   @override
-  State<RainAmountWidget> createState() => _RainAmountWidgetState();
+  State<RegionOverviewPage> createState() => _RegionOverviewPageState();
 }
 
-class _RainAmountWidgetState extends State<RainAmountWidget> {
+class _RegionOverviewPageState extends State<RegionOverviewPage> {
   static const String _coordinatesDelimiter = ",";
   double rainAmount = 0.00;
 
@@ -35,13 +54,13 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
       if (coordinatesStringList.length != 2) {
         log(
           'Error: The coordinates list contains ${coordinatesStringList.length} elements. '
-          'Expected 2.',
+              'Expected 2.',
         );
         return;
       }
       final (double, double) latLon = (
-        double.parse(coordinatesStringList[0]),
-        double.parse(coordinatesStringList[1]),
+      double.parse(coordinatesStringList[0]),
+      double.parse(coordinatesStringList[1]),
       );
       latLonCoordinates.add(latLon);
     });
@@ -61,7 +80,7 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
         } else {
           log(
             'Unsuccessful response status ${result.statusCode} received for '
-            'LatLon $latLon',
+                'LatLon $latLon',
           );
           return;
         }
@@ -72,6 +91,11 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
   @override
   Widget build(final BuildContext context) {
     final List<Widget> statusWidgets = [
+      SizedBox(
+          height: 300,
+          child: SvgPicture.asset(getSvgAssetByDroughtStatusShortCode(widget.droughtStatus.shortCode),
+              semanticsLabel: 'Region image')
+      ),
       Text(
         widget.droughtStatus.name,
         style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
@@ -83,22 +107,10 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
       SizedBox(height: 16),
     ];
 
-    return Dialog(
-      child: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black,
-                offset: Offset(6, 6),
-                spreadRadius: 2,
-                blurStyle: BlurStyle.solid,
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(12.0),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -108,4 +120,26 @@ class _RainAmountWidgetState extends State<RainAmountWidget> {
       ),
     );
   }
+}
+
+String getSvgAssetByDroughtStatusShortCode(final String shortCode) {
+  return switch (shortCode) {
+    'cla' || 'gmc' => 'resources/images/ukd-north-west.svg',
+    'dcs' || 'wsx' => 'resources/images/ukk-south-west.svg',
+    'ean' => 'resources/images/ukh-east.svg',
+    'emd' || 'lna' => 'resources/images/ukf-east-midlands.svg',
+    'gg' => 'resources/images/gg-guernsey.svg',
+    'hnl' => 'resources/images/uki-greater-london.svg',
+    'ie' => 'resources/images/ie-ireland.svg',
+    'im' => 'resources/images/im-isle-of-man.svg',
+    'je' => 'resources/images/je-jersey.svg',
+    'ksl' || 'ssd' || 'thm' => 'resources/images/ukj-south-east.svg',
+    'nea' => 'resources/images/ukc-north-east.svg',
+    'ni' => 'resources/images/ukn-northern-ireland.svg',
+    'scotland' => 'resources/images/ukm-scotland.svg',
+    'wales' => 'resources/images/ukl-wales.svg',
+    'wmd' => 'resources/images/ukg-west-midlands.svg',
+    'yor' => 'resources/images/uke-yorkshire-and-humber.svg',
+    _ => '' // FIXME - MAKE IT SO THIS CAN RETURN NULL
+  };
 }
